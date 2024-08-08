@@ -1,0 +1,118 @@
+import image1 from "@/../public/images/student-profile/my-courses-1.png";
+import image2 from "@/../public/images/student-profile/my-courses-2.png";
+import image3 from "@/../public/images/student-profile/my-courses-3.png";
+import image4 from "@/../public/images/student-profile/my-courses-4.png";
+import image5 from "@/../public/images/student-profile/my-courses-5.png";
+import image6 from "@/../public/images/student-profile/my-courses-6.png";
+import { v4 as uuidv4 } from "uuid";
+
+export const instructorMyCoursesData = [
+  {
+    id: uuidv4(),
+    image: image1,
+    title: "Scrum Master",
+    courseInstructor: "By Kristin Watson",
+    enrolled: 100,
+    price: 499.99,
+    status: "Live",
+  },
+  {
+    id: uuidv4(),
+    image: image2,
+    title: "UI/UX Designer",
+    courseInstructor: "By Ralph Edwards",
+    enrolled: 80,
+    price: 299.99,
+    status: "Applied",
+  },
+  {
+    id: uuidv4(),
+    image: image3,
+    title: "Python Skill",
+    courseInstructor: "By Annette Black",
+    enrolled: 120,
+    price: 599.99,
+    status: "Live",
+  },
+  {
+    id: uuidv4(),
+    image: image4,
+    title: "Node JS",
+    courseInstructor: "By Darlene Robert",
+    enrolled: 90,
+    price: 399.99,
+    status: "Applied",
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    title: "Software Tester",
+    courseInstructor: "By Courtney Henry",
+    enrolled: 70,
+    price: 249.99,
+    status: "Rejected",
+  },
+  {
+    id: uuidv4(),
+    image: image6,
+    title: "Ethical Hacker",
+    courseInstructor: "By Ronald Richards",
+    enrolled: 110,
+    price: 549.99,
+    status: "Applied",
+  },
+  {
+    id: uuidv4(),
+    image: image1,
+    title: "Scrum Master",
+    courseInstructor: "By Kristin Watson",
+    enrolled: 100,
+    price: 499.99,
+    status: "Live",
+  },
+  {
+    id: uuidv4(),
+    image: image2,
+    title: "UI/UX Designer",
+    courseInstructor: "By Ralph Edwards",
+    enrolled: 80,
+    price: 299.99,
+    status: "Applied",
+  },
+  {
+    id: uuidv4(),
+    image: image3,
+    title: "Python Skill",
+    courseInstructor: "By Annette Black",
+    enrolled: 120,
+    price: 599.99,
+    status: "Live",
+  },
+  {
+    id: uuidv4(),
+    image: image4,
+    title: "Node JS",
+    courseInstructor: "By Darlene Robert",
+    enrolled: 90,
+    price: 399.99,
+    status: "Applied",
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    title: "Software Tester",
+    courseInstructor: "By Courtney Henry",
+    enrolled: 70,
+    price: 249.99,
+    status: "Rejected",
+  },
+  {
+    id: uuidv4(),
+    image: image6,
+    title: "Ethical Hacker",
+    courseInstructor: "By Ronald Richards",
+    enrolled: 110,
+    price: 549.99,
+    status: "Applied",
+  },
+];

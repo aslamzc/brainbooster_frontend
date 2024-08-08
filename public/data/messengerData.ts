@@ -1,0 +1,128 @@
+import image1 from "@/../public/images/community/message/friend1.png";
+import image2 from "@/../public/images/community/message/friend2.png";
+import image3 from "@/../public/images/community/message/friend3.png";
+import image4 from "@/../public/images/community/message/friend4.png";
+import image5 from "@/../public/images/community/message/friend5.png";
+import image6 from "@/../public/images/community/message/friend6.png";
+import image7 from "@/../public/images/community/message/friend7.png";
+import { v4 as uuidv4 } from "uuid";
+
+export const messengerData = [
+  {
+    id: uuidv4(),
+    image: image1,
+    name: "Theresa Webb",
+    lastMessage: "just ideas for next time",
+    lastActiveTime: "4m",
+    active: true,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image2,
+    name: "Bessie Cooper",
+    lastMessage: "omg, this is amazing",
+    lastActiveTime: "27m",
+    active: true,
+    unseenMessage: 3,
+  },
+  {
+    id: uuidv4(),
+    image: image3,
+    name: "Ralph Edwards",
+    lastMessage: "You : perfect!",
+    lastActiveTime: "32m",
+    active: true,
+    unseenMessage: 7,
+  },
+  {
+    id: uuidv4(),
+    image: image4,
+    name: "Jerome Bell",
+    lastMessage: "woohoooo",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    name: "Floyd Miles",
+    lastMessage: "You : Wow, this is really",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image4,
+    name: "Jerome Bell",
+    lastMessage: "woohoooo",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    name: "Floyd Miles",
+    lastMessage: "You : Wow, this is really",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image4,
+    name: "Jerome Bell",
+    lastMessage: "woohoooo",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    name: "Floyd Miles",
+    lastMessage: "You : Wow, this is really",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+  {
+    id: uuidv4(),
+    image: image6,
+    name: "Marvin McKinney",
+    lastMessage: "Haha oh man",
+    lastActiveTime: "2h",
+    active: false,
+    unseenMessage: 0,
+  },
+  {
+    id: uuidv4(),
+    image: image7,
+    name: "Albert Flores",
+    lastMessage: "You : I'll be there",
+    lastActiveTime: "4h",
+    active: false,
+    unseenMessage: 0,
+  },
+  {
+    id: uuidv4(),
+    image: image3,
+    name: "Arlene McCoy",
+    lastMessage: "You : Hey!",
+    lastActiveTime: "4h",
+    active: false,
+    unseenMessage: 0,
+  },
+  {
+    id: uuidv4(),
+    image: image5,
+    name: "Jerome Bell",
+    lastMessage: "woohoooo",
+    lastActiveTime: "1h",
+    active: false,
+    unseenMessage: 1,
+  },
+];
