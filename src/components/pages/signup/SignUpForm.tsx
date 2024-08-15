@@ -15,18 +15,18 @@ const SignUpForm = () => {
         <div className="mx-auto w-full max-xl:order-2">
           <div className="padding-all-32 rounded-16px border-neutral-30 bg-neutral-20">
             <h3 className="h3 font-semibold">Let’s Get Started!</h3>
-            <p className="pt-6 text-mText text-neutral-500">
+            {/* <p className="pt-6 text-mText text-neutral-500">
               Please Enter your Email Address to Start your Online Application
-            </p>
+            </p> */}
             <form className="padding-t-40 ">
               <div className="flex flex-col justify-between gap-6">
-                <div className="grid items-center gap-6 sm:grid-cols-2">
+                {/* <div className="grid items-center gap-6 sm:grid-cols-6"> */}
                   <div className="flex flex-col gap-4">
                     <label
                       className="lText block font-medium text-neutral-500"
                       htmlFor="fName"
                     >
-                      First Name
+                      Name
                     </label>
                     <input
                       className="w-full rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none"
@@ -35,7 +35,7 @@ const SignUpForm = () => {
                       placeholder="Jone"
                     />
                   </div>
-                  <div className="flex flex-col gap-4">
+                  {/* <div className="flex flex-col gap-4">
                     <label
                       className="lText block font-medium text-neutral-500"
                       htmlFor="lName"
@@ -48,8 +48,8 @@ const SignUpForm = () => {
                       type="text"
                       placeholder="Fisher"
                     />
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
                 <div className="flex flex-col gap-4">
                   <label
                     className="lText block font-medium text-neutral-500"
@@ -114,7 +114,7 @@ const SignUpForm = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4">
+                {/* <div className="flex flex-col gap-4">
                   <label
                     className="lText block font-medium text-neutral-500"
                     htmlFor="referralCode"
@@ -127,9 +127,9 @@ const SignUpForm = () => {
                     type="text"
                     placeholder="Enter the referral code"
                   />
-                </div>
+                </div> */}
               </div>
-              <p className="padding-t-32 text-mText text-neutral-500">
+              {/* <p className="padding-t-32 text-mText text-neutral-500">
                 By clicking submit, you agree to
                 <Link
                   href="/privacy-policy"
@@ -138,9 +138,9 @@ const SignUpForm = () => {
                   Terms of Use, Privacy Policy, E-sign & Communication
                   Authorization.
                 </Link>
-              </p>
+              </p> */}
               <div className="padding-t-40">
-                <ButtonPrimarySmall buttonText="Sing Up" />
+                <ButtonPrimarySmall buttonText="Sign Up" />
               </div>
             </form>
           </div>

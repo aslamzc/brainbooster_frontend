@@ -37,7 +37,7 @@ const BannerFour = () => {
               </span>{" "}
             </D2>
           </FadeRight>
-          <div className="padding-t-40 gap-40px flex max-sm:flex-col sm:items-center">
+          {/* <div className="padding-t-40 gap-40px flex max-sm:flex-col sm:items-center">
             <FadeLeft className="flex items-center gap-3">
               <IconDiscountCheck /> <TextXL>8.7 Million+ Learners</TextXL>
             </FadeLeft>
@@ -47,11 +47,11 @@ const BannerFour = () => {
           </div>
           <Fade>
             <BannerButtonAndVideo setOpen={setOpen} />
-          </Fade>
+          </Fade> */}
         </div>
       </div>
       <div className="relative col-start-8 col-end-13 max-lg:padding-t-80 4xl:-mr-40">
-        <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-500 bg-white p-2 ">
+        {/* <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-500 bg-white p-2 ">
           <div className="relative">
             <Image
               src={roundedText}
@@ -66,10 +66,10 @@ const BannerFour = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="grid grid-cols-2 sm:gap-5 lg:gap-8 ">
           <div className=" padding-b-60 flex flex-col items-center">
-            <div>
+            {/* <div>
               <FadeTopToDown>
                 <Image
                   src={banner1}
@@ -79,8 +79,8 @@ const BannerFour = () => {
                   className="max-sm:max-w-[150px]"
                 />{" "}
               </FadeTopToDown>
-            </div>
-            <div className="self-start">
+            </div> */}
+            {/* <div className="self-start">
               <FadeDownToTop>
                 <Image
                   src={bannerSmall1}
@@ -90,8 +90,8 @@ const BannerFour = () => {
                   className=" rounded-full"
                 />
               </FadeDownToTop>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <FadeTopToDown>
                 <Image
                   src={bannerMedium1}
@@ -101,10 +101,10 @@ const BannerFour = () => {
                   className=" rounded-full max-sm:w-[100px]"
                 />{" "}
               </FadeTopToDown>
-            </div>
+            </div> */}
           </div>
           <div className=" padding-t-60 flex flex-col items-center">
-            <div>
+            {/* <div>
               <FadeDownToTop>
                 <Image
                   src={bannerMedium2}
@@ -114,8 +114,8 @@ const BannerFour = () => {
                   className="rounded-full max-sm:w-[100px]"
                 />{" "}
               </FadeDownToTop>
-            </div>
-            <div className="self-end">
+            </div> */}
+            {/* <div className="self-end">
               <Image
                 src={bannerSmall2}
                 width={60}
@@ -123,7 +123,7 @@ const BannerFour = () => {
                 alt="banner small"
                 className=" rounded-full"
               />
-            </div>
+            </div> */}
             <div>
               <FadeDownToTop>
                 <Image

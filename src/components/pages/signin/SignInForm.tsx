@@ -72,7 +72,7 @@ const SignInForm = () => {
                 </Link>
               </p>
               <div className="padding-t-40">
-                <ButtonPrimarySmall buttonText="Sing In" />
+                <ButtonPrimarySmall buttonText="Sign In" />
               </div>
             </form>
           </div>

@@ -1,30 +1,36 @@
-import FooterHomeOne from "@/components/footer/FooterHomeOne";
-import NavbarOne from "@/components/navbar/NavbarOne";
-import Banner from "@/components/pages/home-one/Banner";
-import Counter from "@/components/pages/home-one/Counter";
-import Courses from "@/components/pages/home-one/Courses";
-import CustomersSay from "@/components/pages/home-one/CustomersSay";
-import Instructor from "@/components/pages/home-one/Instructor";
-import NewsLetter from "@/components/pages/home-one/NewsLetter";
-import WhyChooseUs from "@/components/pages/home-one/WhyChooseUs";
-import Fade from "@/motionEffect/Fade";
+import FooterHomeFour from "@/components/footer/FooterHomeFour";
+import NavbarFour from "@/components/navbar/NavbarFour";
+import TopInstructor from "@/components/pages/about-us/TopInstructor";
+import BannerFour from "@/components/pages/home-four/BannerFour";
+import HomeFourAboutUs from "@/components/pages/home-four/HomeFourAboutUs";
+import HomeFourBestPlatform from "@/components/pages/home-four/HomeFourBestPlatform";
+import HomeFourCourses from "@/components/pages/home-four/HomeFourCourses";
+import HomeFourInfo from "@/components/pages/home-four/HomeFourInfo";
+import HomeFourTestimonial from "@/components/pages/home-four/HomeFourTestimonial";
+import OnlineCourses from "@/components/pages/home-four/OnlineCourses";
+import TrustPilot from "@/components/pages/home-four/TrustPilot";
+import { Metadata } from "next";
 
-const Home = () => {
+export const metadata: Metadata = {
+  title: "BrainBooster",
+  description: "Educational quiz platform",
+};
+const HomeFour = () => {
   return (
     <>
-      <NavbarOne />
-      <Banner />
-      <Fade>
-        <Counter />
-      </Fade>
-      <Courses />
-      <Instructor />
-      <WhyChooseUs />
-      <CustomersSay />
-      <NewsLetter />
-      <FooterHomeOne />
+      <NavbarFour />
+      <BannerFour />
+      {/* <TrustPilot /> */}
+      <OnlineCourses />
+      {/* <HomeFourAboutUs /> */}
+      {/* <HomeFourCourses /> */}
+      {/* <HomeFourInfo /> */}
+      {/* <HomeFourBestPlatform /> */}
+      {/* <TopInstructor /> */}
+      {/* <HomeFourTestimonial /> */}
+      {/* <FooterHomeFour /> */}
     </>
   );
 };
 
-export default Home;
+export default HomeFour;

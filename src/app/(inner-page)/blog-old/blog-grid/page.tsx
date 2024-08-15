@@ -31,7 +31,7 @@ const BlogGrid = () => {
   return (
     <>
       <CourseOneBannerWithLabel
-        title="Our Latest News and up coming blog"
+        title="Quizzes"
         buttonText={buttonData}
         handleTabClick={handleTabClick}
       />

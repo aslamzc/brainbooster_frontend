@@ -3,13 +3,25 @@ import course from "@/../public/images/student-profile/course.png";
 import BorderHorizontalN40 from "@/components/customBorder/BorderHorizontalN40";
 import H3 from "@/components/sharedComponents/H3";
 import TextM from "@/components/sharedComponents/TextM";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import { IconCheck, IconX, IconWorld } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { quizData } from "../../../../../public/data/quiaData";
 import ButtonPrimarySmall from "../edit-profile/ButtonPrimarySmall";
 import QuizQuestion from "./QuizQuestion";
+import DropdownNavbar from "@/components/dropdown/DropdownNavbar";
+
+const category = [
+  { label: "English", link: "/courses/courses-two" },
+  { label: "English", link: "/courses/courses-two" },
+  { label: "Tamil", link: "/courses/courses-two" }
+];
+const category2 = [
+  { label: "Sinhala", link: "/courses/courses-two" },
+  { label: "English", link: "/courses/courses-two" },  
+  { label: "Tamil", link: "/courses/courses-two" }
+];
 
 const QuizBody = () => {
   const [correctAnswer, setCorrectAnswer] = useState("");
@@ -48,7 +60,7 @@ const QuizBody = () => {
     <div className="padding-all-32 gap-32px flex flex-col rounded-16px bg-white">
       {" "}
       <div className="flex items-center gap-6 max-lg:flex-col xl:gap-10">
-        <div className="overflow-hidden rounded-16px">
+        {/* <div className="overflow-hidden rounded-16px">
           <Image
             src={course}
             width={171}
@@ -56,10 +68,21 @@ const QuizBody = () => {
             alt="course thumbnail"
             className="theme-transition-3 rounded-16px hover:scale-105"
           />
-        </div>
+        </div> */}
         <div className="flex flex-col gap-4">
-          <H3>The Complete Health Sciences & Medicine Courses </H3>
-          <TextM>120 Courses In 01</TextM>
+          <H3>Can - Cannot</H3>
+          <div className="flex flex-row gap-4">
+            <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
+              <TextM>Question</TextM>
+              <IconWorld />
+              <DropdownNavbar options={category2} />
+            </div>
+            <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
+              <TextM>Answer</TextM>
+              <IconWorld />
+              <DropdownNavbar options={category2} />
+            </div>
+          </div>
         </div>
       </div>
       {/* quiz question */}

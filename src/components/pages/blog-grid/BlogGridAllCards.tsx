@@ -11,9 +11,9 @@ const BlogGridAllCards = () => {
             <CardBlogGrid key={id} {...props} />
           ))}
         </div>
-        <div className="mx-auto mt-10 w-fit">
+        {/* <div className="mx-auto mt-10 w-fit">
           <ButtonPagination />
-        </div>
+        </div> */}
       </div>
     </section>
   );

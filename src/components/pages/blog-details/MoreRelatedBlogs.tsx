@@ -12,7 +12,7 @@ type Props = {
 const MoreRelatedBlogs = ({ image, title, date, link }: Props) => {
   return (
     <div className="flex items-center gap-6">
-      <div>
+      {/* <div>
         <Image
           src={image}
           width={80}
@@ -20,7 +20,7 @@ const MoreRelatedBlogs = ({ image, title, date, link }: Props) => {
           alt="More Related Blogs"
           className="rounded-full"
         />
-      </div>
+      </div> */}
       <div className="flex flex-col gap-3">
         <H5>
           <Link

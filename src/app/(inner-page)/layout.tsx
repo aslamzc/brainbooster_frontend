@@ -1,10 +1,10 @@
 import FooterHomeOne from "@/components/footer/FooterHomeOne";
-import NavbarOne from "@/components/navbar/NavbarOne";
+import NavbarFour from "@/components/navbar/NavbarFour";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Inner Pages - Education & Online Course With Community",
-  description: "Education & Online Course With Community",
+  title: "BrainBooster",
+  description: "",
 };
 
 export default function InnerLayout({
@@ -14,9 +14,9 @@ export default function InnerLayout({
 }) {
   return (
     <>
-      <NavbarOne />
+      <NavbarFour />
       {children}
-      <FooterHomeOne />
+      {/* <FooterHomeOne /> */}
     </>
   );
 }

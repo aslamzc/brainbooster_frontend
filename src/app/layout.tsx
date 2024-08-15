@@ -33,7 +33,7 @@ export default function RootLayout({
           {children}
           <ToastContainer />
           <ScrollBackToTop />
-          <CustomCursor />
+          {/* <CustomCursor /> */}
           
         </body>
       </ReduxProvider>

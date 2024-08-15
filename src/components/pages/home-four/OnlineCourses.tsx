@@ -9,10 +9,10 @@ const OnlineCourses = () => {
       <div className="container">
         {/* section heading */}
         <SectionHeading
-          title="Explore 4,000+ Free Online Courses"
-          description="Welcome to our diverse and dynamic course catalog. we're dedicated to providing you with access to high-quality education"
+          title="Explore 1,000+ Quizzes"
+          description="Welcome to Welcome to BrainBooster App! Ready to test your knowledge and have some fun?"
           link="/courses/courses-one"
-          buttonText="See All Courses"
+          buttonText="See All Quizzes"
         />
         <div className="padding-t-60 grid grid-cols-1 items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {homeFourOnlineCourseCardData.map(({ id, ...props }, index) => (
