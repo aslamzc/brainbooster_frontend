@@ -5,9 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySmall";
+import { form, loginFormType } from "./LoginSchema";
 
 const SignInForm = () => {
+
   const [passwordShow, setPasswordShow] = useState(false);
+
+  const { register, handleSubmit, formState: { errors } } = form();
+
+  const onSubmit = async (data: loginFormType) => {
+    try {
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="section-gap-top section-gap-bottom">
       <div className="container grid items-center justify-between gap-20 max-xxl:grid-flow-row max-xxl:justify-center xxl:grid-cols-2 xxl:gap-40">
@@ -17,7 +30,7 @@ const SignInForm = () => {
             <p className="pt-6 text-mText text-neutral-500">
               Sign in to your account and join us
             </p>
-            <form className="padding-t-40 ">
+            <form className="padding-t-40" onSubmit={handleSubmit(onSubmit)}>
               <div className=" flex flex-col justify-between gap-6">
                 <div className="flex flex-col gap-4">
                   <label
@@ -29,9 +42,10 @@ const SignInForm = () => {
                   <input
                     className="w-full rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none"
                     id="email"
-                    type="email"
                     placeholder="Your email ID here"
+                    {...register("email")}
                   />
+                  <p>{errors.email?.message}</p>
                 </div>{" "}
                 <div className="flex flex-col gap-4">
                   <label
@@ -46,8 +60,8 @@ const SignInForm = () => {
                       id="password"
                       type={passwordShow ? "text" : "password"}
                       placeholder="Enter Your Password..."
+                      {...register("password")}
                     />
-
                     <span onClick={() => setPasswordShow(!passwordShow)}>
                       {passwordShow ? (
                         <IconEye className="cursor-pointer" />
@@ -56,6 +70,8 @@ const SignInForm = () => {
                       )}
                     </span>
                   </div>
+                  <p>{errors.password?.message}</p>
+
                 </div>
                 <Link
                   href="/forget-password"

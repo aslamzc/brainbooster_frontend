@@ -11,6 +11,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@headlessui/react": "^1.7.17",
+    "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@tabler/icons-react": "^2.40.0",
     "@types/react-modal-video": "^1.2.3",
@@ -33,7 +34,8 @@
     "sharp": "^0.32.6",
     "swiper": "^10.1.0",
     "update-browserslist-db": "^1.1.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
