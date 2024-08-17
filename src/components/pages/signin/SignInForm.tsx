@@ -7,6 +7,7 @@ import { useState } from "react";
 import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySmall";
 import { form, loginFormType } from "./LoginSchema";
 import axios from "@/utils/axios";
+import Cookies from "js-cookie";
 
 const SignInForm = () => {
 
@@ -18,6 +19,16 @@ const SignInForm = () => {
     try {
       const res = await axios.post('/login', data);
       localStorage.setItem('accessToken', res.data.accessToken);
+
+      const expirationTime = new Date(
+        new Date().getTime() + 1 * 60 * 60 * 1000
+      )
+
+      Cookies.set("accessToken", res.data.accessToken, {
+        expires: expirationTime,
+        path: "/",
+      });
+
     } catch (error) {
       console.error(error);
     }

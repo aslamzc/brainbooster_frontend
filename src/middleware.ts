@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { isAuthenticated } from "@/utils/auth";
 
 export function middleware(request: NextRequest) {
-    if (!isAuthenticated) {
+    const accessToken = request.cookies.get("accessToken")?.value;
+    console.log(accessToken);
+    if (!accessToken) {
         return NextResponse.redirect(new URL('/', request.url))
     }
 }
