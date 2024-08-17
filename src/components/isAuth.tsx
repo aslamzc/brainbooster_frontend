@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 //client side auth guard
 export default function isAuth(Component: any) {
-  return function IsAuth(props: any) {
+  return function IsAuth() {
 
     const accessToken = Cookies.get("accessToken");
 
@@ -19,6 +19,6 @@ export default function isAuth(Component: any) {
       return null;
     }
 
-    return <Component {...props} />;
+    return Component;
   };
 }
