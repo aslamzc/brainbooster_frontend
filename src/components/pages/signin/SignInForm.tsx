@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySmall";
 import { form, loginFormType } from "./LoginSchema";
+import axios from "@/utils/axios";
 
 const SignInForm = () => {
 
@@ -15,7 +16,8 @@ const SignInForm = () => {
 
   const onSubmit = async (data: loginFormType) => {
     try {
-      console.log(data);
+      const res = await axios.post('/login', data);
+      localStorage.setItem('accessToken', res.data.accessToken);
     } catch (error) {
       console.error(error);
     }
