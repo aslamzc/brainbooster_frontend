@@ -1,21 +1,21 @@
 "use client";
-import { isAuthenticated } from "@/utils/auth"; 
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
 
 //client side auth guard
 export default function isAuth(Component: any) {
   return function IsAuth(props: any) {
-    const auth = isAuthenticated;
+
+    const accessToken = Cookies.get("accessToken");
 
     useEffect(() => {
-      if (!auth) {
+      if (!accessToken) {
         return redirect("/");
       }
     }, []);
 
-
-    if (!auth) {
+    if (!accessToken) {
       return null;
     }
 
