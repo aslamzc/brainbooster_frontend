@@ -13,6 +13,7 @@ import ReduxProvider from "@/redux/ReduxProvider";
 import "react-quill/dist/quill.snow.css";
 import "react-range-slider-input/dist/style.css";
 import { ToastContainer } from "react-toastify";
+import { LanguageProvider } from "@/utils/i18n/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Edufast - Education & Online Course With Community",
@@ -30,11 +31,12 @@ export default function RootLayout({
         <body
           className={`font-inter text-base ${inter.variable} bg-white text-neutral-700`}
         >
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
           <ToastContainer />
           <ScrollBackToTop />
           {/* <CustomCursor /> */}
-          
         </body>
       </ReduxProvider>
     </html>
