@@ -88,7 +88,7 @@ const NavbarFour = () => {
                 <div className="gap-40px flex items-center">
                   {" "}
                   <div className="gap-40px flex items-center">
-                    <Link href="/home-four">
+                    <Link href="/">
                       {" "}
                       <Image
                         src={logo}
