@@ -1,18 +1,18 @@
 "use client";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
 import { Listbox, Transition } from "@headlessui/react";
 import { IconChevronDown } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 type Props = {
-  options: { label: string; link: string }[];
+  options: { label: string; language: string }[];
 };
 
 export default function DropdownNavbar({ options }: Props) {
   const [selected, setSelected] = useState(options[0]);
+  const { setLanguage } = useLanguage();
 
-  const router = useRouter();
   return (
     <div className="z-[300] ">
       <Listbox value={selected} onChange={setSelected}>
@@ -50,7 +50,7 @@ export default function DropdownNavbar({ options }: Props) {
                   {({ selected }) => (
                     <>
                       <span
-                        onClick={() => router.push(`${option.link}`)}
+                        onClick={() => setLanguage(option.language)}
                         className={`block truncate ${
                           selected ? "font-medium" : "font-normal"
                         }`}

@@ -25,9 +25,9 @@ import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonOutline from "../button/ButtonOutline";
 
 const category = [
-  { label: "English", link: "/courses/courses-two" },
-  { label: "Sinhala", link: "/courses/courses-two" },
-  { label: "Tamil", link: "/courses/courses-two" }
+  { label: "English", language: "en" },
+  { label: "Sinhala", language: "si" },
+  { label: "Tamil", language: "ta" }
 ];
 
 const NavbarFour = () => {

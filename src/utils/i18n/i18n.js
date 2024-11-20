@@ -4,14 +4,17 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     translation: {
-      welcome: "Welcome",
-      description: "This is a client-rendered i18n example.",
+      text_1: "Explore 1,000+ Quizzes",
     },
   },
-  es: {
+  si: {
     translation: {
-      welcome: "Bienvenido",
-      description: "Este es un ejemplo de i18n renderizado en cliente.",
+      text_1: "ප්‍රශ්නාවලිය 1,000+ ගවේෂණය කරන්න",
+    },
+  },
+  ta: {
+    translation: {
+      text_1: "1,000+ வினாடி வினாக்களை ஆராயுங்கள்",
     },
   },
 };

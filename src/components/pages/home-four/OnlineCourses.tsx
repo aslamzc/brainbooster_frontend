@@ -1,15 +1,19 @@
+'use client';
+
 import SectionHeading from "@/components/sharedComponents/SectionHeading";
 import StaggerEffectTwo from "@/motionEffect/StaggerEffectTwo";
 import { homeFourOnlineCourseCardData } from "../../../../public/data/homeFourOnlineCourseCardData";
 import OnlineCoursesCard from "./OnlineCoursesCard";
+import { useTranslation } from 'react-i18next';
 
 const OnlineCourses = () => {
+  const { t } = useTranslation();
   return (
     <div className="section-gap-top section-gap-bottom overflow-hidden">
       <div className="container">
         {/* section heading */}
         <SectionHeading
-          title="Explore 1,000+ Quizzes"
+          title={t('text_1')}
           description="Welcome to Welcome to BrainBooster App! Ready to test your knowledge and have some fun?"
           link="/courses/courses-one"
           buttonText="See All Quizzes"

@@ -29,8 +29,8 @@ const BlogGridAllCards = () => {
       const name = data.map((item: any) => item.name);
       const title = data.map((item: any) => item.title);
 
-      const nameTr = await translateText(name, "es");
-      const titleTr = await translateText(title, "es");
+      const nameTr = await translateText(name, "si");
+      const titleTr = await translateText(title, "si");
 
       data.map((item: any, key: number) => {
         item.name = nameTr[key].translatedText
