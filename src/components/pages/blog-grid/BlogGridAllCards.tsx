@@ -4,6 +4,7 @@ import ButtonPagination from "@/components/button/ButtonPagination";
 import { blogGridData } from "../../../../public/data/blogGridData";
 import axios from "@/utils/axios";
 import translateText from "@/utils/googleTranslate";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
 
 //types
 type QuizeType = {
@@ -16,11 +17,17 @@ type QuizeType = {
 
 const BlogGridAllCards = () => {
 
+  const { language } = useLanguage();
+
   const [quizzes, setQuizzes] = useState<Array<QuizeType>>([]);
 
   useEffect(() => {
     getInitialData();
   }, []);
+
+  useEffect(() => {
+    getInitialData();
+  }, [language]);
 
   const getInitialData = async () => {
     try {
@@ -30,9 +37,9 @@ const BlogGridAllCards = () => {
       const title = data.map((item: any) => item.title);
       const description = data.map((item: any) => item.description);
 
-      const nameTr = await translateText(userName, "si");
-      const titleTr = await translateText(title, "si");
-      const decriptionTr = await translateText(description, "si");
+      const nameTr = await translateText(userName, language);
+      const titleTr = await translateText(title, language);
+      const decriptionTr = await translateText(description, language);
 
       data.map((item: any, key: number) => {
         item.userName = nameTr[key].translatedText
