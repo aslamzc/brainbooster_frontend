@@ -26,15 +26,18 @@ const BlogGridAllCards = () => {
     try {
       const { data } = await axios.get('/quizzes');
 
-      const name = data.map((item: any) => item.name);
+      const userName = data.map((item: any) => item.userName);
       const title = data.map((item: any) => item.title);
+      const description = data.map((item: any) => item.description);
 
-      const nameTr = await translateText(name, "si");
+      const nameTr = await translateText(userName, "si");
       const titleTr = await translateText(title, "si");
+      const decriptionTr = await translateText(description, "si");
 
       data.map((item: any, key: number) => {
-        item.name = nameTr[key].translatedText
+        item.userName = nameTr[key].translatedText
         item.title = titleTr[key].translatedText
+        item.description = decriptionTr[key].translatedText
       });
 
       setQuizzes(data);
@@ -42,7 +45,6 @@ const BlogGridAllCards = () => {
       console.error(error);
     }
   }
-
 
   return (
     <section className=" padding-t-60">
