@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReduxProvider>
-        <body
+        <body suppressHydrationWarning={true}
           className={`font-inter text-base ${inter.variable} bg-white text-neutral-700`}
         >
           <LanguageProvider>
