@@ -1,27 +1,17 @@
-import bannerImage from "@/../public/images/blog/blog-details-banner.png";
-import NewsLetter from "@/components/pages/about-us/NewsLetter";
-import BlogDetailsContent from "@/components/pages/blog-details/BlogDetailsContent";
-import Banner1600WithBreadCrumbs from "@/components/sharedComponents/Banner1600WithBreadCrumbs";
+import QuizDetailsContent from "@/components/pages/quiz-details/QuizDetailsContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Details - Education & Online Course With Community",
-  description: "Education & Online Course With Community",
+  title: "Quiz",
+  description: "Quiz",
 };
 
-const BlogDetails = () => {
+const QuizDetails = () => {
   return (
     <div className="bg-neutral-20">
-      {/* <Banner1600WithBreadCrumbs
-        bannerImage={bannerImage}
-        page="Blog"
-        pageLink="/blog/blog-classic"
-        subPage="Details"
-      /> */}
-      <BlogDetailsContent />
-      {/* <NewsLetter /> */}
+      <QuizDetailsContent />
     </div>
   );
 };
 
-export default BlogDetails;
+export default QuizDetails;

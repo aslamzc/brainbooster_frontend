@@ -19,35 +19,88 @@ const category = [
 ];
 const category2 = [
   { label: "Sinhala", link: "/courses/courses-two" },
-  { label: "English", link: "/courses/courses-two" },  
+  { label: "English", link: "/courses/courses-two" },
   { label: "Tamil", link: "/courses/courses-two" }
 ];
 
-const QuizBody = () => {
-  const [correctAnswer, setCorrectAnswer] = useState("");
-  const [allCorrectAnswer, setAllCorrectAnswer] = useState<
-    { question: string; correct: boolean }[]
-  >([]);
+//types
+type QuizDetailsType = {
+  id: number,
+  title: string,
+  description: string,
+  createdAt: string,
+  userName: string,
+  questions: Array<QuestionType>,
+}
 
+type QuestionType = {
+  id: number,
+  question: string,
+  answers: Array<AnswerType>,
+}
+
+type AnswerType = {
+  id: number,
+  answer: string,
+  isCorrect: boolean
+}
+
+type UserAnswerType = {
+  questionId: number,
+  answerId: number,
+  question: string,
+  isCorrect: boolean,
+  answer: string,
+  correctAnswer: string
+
+}
+
+const QuizBody = ({ id, title, description, createdAt, userName, questions }: QuizDetailsType) => {
+  const [userAnswers, setUserAnswers] = useState<Array<UserAnswerType>>([]);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const handleCheckbox = (answerNo: string) => {
-    const answerOption = answerNo.split("");
-    quizData.forEach((answer, index) => {
-      if (index == parseInt(answerOption[1])) {
-        if (answer.answer == answerOption[0]) {
-          setAllCorrectAnswer((prevAnswers) => [
-            ...prevAnswers.filter((a) => a.question !== answer.question),
-            { question: answer.question, correct: true },
-          ]);
-        } else {
-          setAllCorrectAnswer((prevAnswers) => [
-            ...prevAnswers.filter((a) => a.question !== answer.question),
-            { question: answer.question, correct: false },
-          ]);
-        }
-      }
-    });
+  const handleCheckbox = (questionId: number, answerId: string) => {
+
+    const existingAnswer = userAnswers.find((item) => item.questionId === questionId);
+    const answerDetails = getAnswerDetails(questionId, Number(answerId));
+
+    if (existingAnswer) {
+      existingAnswer.answerId = Number(answerId);
+      existingAnswer.question = answerDetails?.question ?? "";
+      existingAnswer.isCorrect = answerDetails?.isCorrect ?? false;
+      existingAnswer.answer = answerDetails?.userAnswer ?? "";
+      existingAnswer.correctAnswer = answerDetails?.correctAnswer ?? "";
+
+    } else {
+
+      setUserAnswers([
+        ...userAnswers,
+        {
+          questionId,
+          answerId: Number(answerId),
+          question: answerDetails?.question ?? "",
+          isCorrect: answerDetails?.isCorrect ?? false,
+          answer: answerDetails?.userAnswer ?? "",
+          correctAnswer: answerDetails?.correctAnswer ?? "",
+        },
+      ]);
+    }
+
+    console.log(userAnswers);
+
+  };
+
+  const getAnswerDetails = (questionId: number, answerId: number) => {
+    const question = questions.find((item) => item.id === questionId);
+    if (question) {
+      return {
+        question: question.question,
+        userAnswer: question.answers.find((item) => item.id === answerId)?.answer,
+        correctAnswer: question.answers.find((item) => item.isCorrect)?.answer,
+        isCorrect: question.answers.find((item) => item.id === answerId)?.isCorrect
+      };
+    }
+    return null;
   };
 
   const handleShowAnswer = (
@@ -60,17 +113,8 @@ const QuizBody = () => {
     <div className="padding-all-32 gap-32px flex flex-col rounded-16px bg-white">
       {" "}
       <div className="flex items-center gap-6 max-lg:flex-col xl:gap-10">
-        {/* <div className="overflow-hidden rounded-16px">
-          <Image
-            src={course}
-            width={171}
-            height={120}
-            alt="course thumbnail"
-            className="theme-transition-3 rounded-16px hover:scale-105"
-          />
-        </div> */}
         <div className="flex flex-col gap-4">
-          <H3>Can - Cannot</H3>
+          <H3>{title}</H3>
           <div className="flex flex-row gap-4">
             <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
               <TextM>Question</TextM>
@@ -90,14 +134,12 @@ const QuizBody = () => {
       {!showAnswer ? (
         <>
           <div className="flex flex-col gap-6">
-            {quizData.map(({ question, answers, id }, index) => (
+            {questions.map(({ question, answers, id }, index) => (
               <QuizQuestion
-                key={id}
-                handleCheckbox={handleCheckbox}
+                key={index}
+                handleCheckbox={(answerId) => handleCheckbox(id, answerId)}
                 question={question}
                 answers={answers}
-                questionIndex={index}
-                correctAnswer={correctAnswer}
               />
             ))}
           </div>
@@ -109,19 +151,34 @@ const QuizBody = () => {
       ) : (
         <>
           <div className="flex flex-col gap-5 rounded-8px border border-neutral-30 bg-neutral-20 p-6">
-            {allCorrectAnswer.map((item) => (
-              <div
-                key={uuidv4()}
-                className="flex items-center gap-3 text-xl font-medium text-neutral-500"
-              >
-                {item.correct ? (
-                  <IconCheck size={32} className="text-secondaryColorTwo" />
-                ) : (
-                  <IconX size={32} className="text-[#FF0505]" />
-                )}{" "}
-                <p>{item.question}</p>
-              </div>
-            ))}
+            {
+              userAnswers.map((item) => (
+                <div
+                  key={uuidv4()}
+                  className="flex flex-col gap-3 text-xl font-medium text-neutral-500"
+                >
+                  <p>{item.question}</p>
+                  {item.isCorrect
+                    ?
+                    <div className="flex flex-row">
+                      <p>Answer : {item.answer}</p>
+                      <IconCheck size={32} className="text-secondaryColorTwo" />
+                    </div>
+                    :
+                    <>
+                      <div className="flex flex-row">
+                        <p>Answer : {item.answer}</p>
+                        <IconX size={32} className="text-[#FF0505]" />
+                      </div>
+                      <div className="flex flex-row">
+                        <p>Correct Answer : {item.correctAnswer}</p>
+                        <IconCheck size={32} className="text-secondaryColorTwo" />
+                      </div>
+                    </>
+                  }
+                </div>
+              ))
+            }
           </div>
           <ButtonPrimarySmall
             buttonText="Back To Quiz"
@@ -129,7 +186,7 @@ const QuizBody = () => {
           />
         </>
       )}
-    </div>
+    </div >
   );
 };
 

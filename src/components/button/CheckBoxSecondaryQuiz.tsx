@@ -1,15 +1,13 @@
 "use client";
 
 type Props = {
-  id: string;
+  answerId: number;
   name: string;
-  correctAnswer: string;
   handleCheckbox: (answerNo: string) => void;
 };
 const CheckBoxSecondaryQuiz = ({
-  id,
+  answerId,
   name,
-  correctAnswer,
   handleCheckbox,
 }: Props) => {
   return (
@@ -17,9 +15,8 @@ const CheckBoxSecondaryQuiz = ({
       <label className="relative flex cursor-pointer items-center rounded-full px-0">
         <input
           type="radio"
-          id={id}
           name={`${name}`}
-          value={id}
+          value={answerId}
           onChange={(e) => {
             handleCheckbox(e.target.value);
           }}

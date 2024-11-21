@@ -1,6 +1,6 @@
 import bannerImage from "@/../public/images/blog/blog-details-banner.png";
 import NewsLetter from "@/components/pages/about-us/NewsLetter";
-import BlogDetailsContent from "@/components/pages/blog-details/BlogDetailsContent";
+import QuizDetailsContent from "@/components/pages/quiz-details/QuizDetailsContent";
 import Banner1600WithBreadCrumbs from "@/components/sharedComponents/Banner1600WithBreadCrumbs";
 import { Metadata } from "next";
 
@@ -18,7 +18,7 @@ const BlogDetails = () => {
         pageLink="/blog/blog-classic"
         subPage="Details"
       />
-      <BlogDetailsContent />
+      <QuizDetailsContent />
       <NewsLetter />
     </div>
   );

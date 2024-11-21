@@ -1,3 +1,4 @@
+"use client";
 import ButtonPrimary from "@/components/button/ButtonPrimary";
 import ButtonUnderLine from "@/components/button/ButtonUnderLine";
 import BorderHorizontalN40 from "@/components/customBorder/BorderHorizontalN40";
@@ -15,8 +16,51 @@ import TabReviewComment from "../courses-details-one/TabReviewComment";
 import MoreRelatedBlogs from "./MoreRelatedBlogs";
 import WriteAComment from "./WriteAComment";
 import QuizBody from "@/components/pages/student-profile/quiz/QuizBody";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from "@/utils/axios";
 
-const BlogDetailsContent = () => {
+//types
+type QuizDetailsType = {
+  id: number,
+  title: string,
+  description: string,
+  createdAt: string,
+  userName: string,
+  questions: Array<QuestionType>,
+}
+
+type QuestionType = {
+  id: number,
+  question: string,
+  answers: Array<AnswerType>,
+}
+
+type AnswerType = {
+  id: number,
+  answer: string,
+  isCorrect: boolean
+}
+
+const QuizDetailsContent = () => {
+
+  const [quizDetails, setQuizDetails] = useState<QuizDetailsType>();
+  const { quizId } = useParams();
+
+  useEffect(() => {
+    getInitialData();
+  }, []);
+
+  const getInitialData = async () => {
+    try {
+      const { data } = await axios.get(`/quiz/${quizId}`);
+      setQuizDetails(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   return (
     <div className="padding-t-60 padding-b-80">
       <div className="container grid grid-cols-1 gap-6 xl:grid-cols-12">
@@ -24,12 +68,12 @@ const BlogDetailsContent = () => {
           <div className="padding-all-32 gap-32px flex flex-col rounded-16px bg-white">
             <div className="flex flex-col gap-6 ">
               <BlogInfo
-                by="Admin"
+                by={quizDetails?.userName || "Guest User"}
                 view={2}
                 message={"25"}
-                date="12 May, 2024"
+                date={quizDetails?.createdAt || ""}
               />
-              <QuizBody />
+              {quizDetails && <QuizBody {...quizDetails} />}
             </div>
           </div>
         </div>
@@ -40,10 +84,10 @@ const BlogDetailsContent = () => {
               <H4>More Related Quiz</H4>
               <BorderHorizontalN40 />
               {moreRelatedBlogData.map(({ id, ...props }) => (
-                <>
+                <div key={id}>
                   <MoreRelatedBlogs key={id} {...props} />
                   <BorderHorizontalN40 />
-                </>
+                </div>
               ))}
               <ButtonUnderLine buttonText="See All" />
             </div>
@@ -54,4 +98,4 @@ const BlogDetailsContent = () => {
   );
 };
 
-export default BlogDetailsContent;
+export default QuizDetailsContent;
