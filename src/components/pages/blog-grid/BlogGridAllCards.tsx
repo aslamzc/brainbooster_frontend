@@ -5,14 +5,16 @@ import { blogGridData } from "../../../../public/data/blogGridData";
 import axios from "@/utils/axios";
 import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
+import Loading from "@/app/loading";
+import { set } from "react-hook-form";
 
 //types
 type QuizeType = {
   id: number,
   title: string,
   description: string,
-  created_at: string,
-  name: string
+  createdAt: string,
+  userName: string
 }
 
 const BlogGridAllCards = () => {
@@ -20,6 +22,7 @@ const BlogGridAllCards = () => {
   const { language } = useLanguage();
 
   const [quizzes, setQuizzes] = useState<Array<QuizeType>>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getInitialData();
@@ -31,8 +34,8 @@ const BlogGridAllCards = () => {
 
   const getInitialData = async () => {
     try {
+      setLoading(true);
       const { data } = await axios.get('/quizzes');
-
       const userName = data.map((item: any) => item.userName);
       const title = data.map((item: any) => item.title);
       const description = data.map((item: any) => item.description);
@@ -48,19 +51,23 @@ const BlogGridAllCards = () => {
       });
 
       setQuizzes(data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
   }
 
   return (
-    <section className=" padding-t-60">
+    <section className="padding-t-60">
       <div className="container">
-        <div className="grid items-center justify-center gap-12 md:grid-cols-2 xl:grid-cols-3">
-          {quizzes?.map((quiz) => (
-            <CardBlogGrid key={quiz.id} {...quiz} />
-          ))}
-        </div>
+        {loading && <Loading />}
+        {!loading &&
+          <div className="grid items-center justify-center gap-12 md:grid-cols-2 xl:grid-cols-3">
+            {quizzes?.map((quiz) => (
+              <CardBlogGrid key={quiz.id} {...quiz} />
+            ))}
+          </div>
+        }
         {/* <div className="mx-auto mt-10 w-fit">
           <ButtonPagination />
         </div> */}
