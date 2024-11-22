@@ -9,6 +9,9 @@ import { form, loginFormType } from "./LoginSchema";
 import axios from "@/utils/axios";
 import Cookies from "js-cookie";
 
+type ResponseType = {
+  accessToken : string
+}
 const SignInForm = () => {
 
   const [passwordShow, setPasswordShow] = useState(false);
@@ -17,14 +20,14 @@ const SignInForm = () => {
 
   const onSubmit = async (data: loginFormType) => {
     try {
-      const res = await axios.post('/login', data);
-      localStorage.setItem('accessToken', res.data.accessToken);
+      const res: ResponseType = await axios.post('/login', data);
+      localStorage.setItem('accessToken', res.accessToken);
 
       const expirationTime = new Date(
         new Date().getTime() + 1 * 60 * 60 * 1000
       )
 
-      Cookies.set("accessToken", res.data.accessToken, {
+      Cookies.set("accessToken", res.accessToken, {
         expires: expirationTime,
         path: "/",
       });
