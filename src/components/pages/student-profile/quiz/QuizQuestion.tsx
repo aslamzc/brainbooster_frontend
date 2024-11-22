@@ -11,17 +11,21 @@ type Props = {
   answers: { id: number; answer: string }[];
   handleCheckbox: (answerNo: string) => void;
   questionLanguage: string;
+  answerLanguage: string;
 };
 
-const QuizQuestion = ({ question, answers, handleCheckbox, questionLanguage }: Props) => {
+const QuizQuestion = ({ question, answers, handleCheckbox, questionLanguage, answerLanguage }: Props) => {
 
   const [translatedQuestion, setTranslatedQuestion] = useState(question);
   const [translatedAnswer, setTranslatedAnswer] = useState(answers);
 
   useEffect(() => {
     translateQuestion();
-    translateAnswers();
   }, [questionLanguage]);
+
+  useEffect(() => {
+    translateAnswers();
+  }, [answerLanguage]);
 
   const translateQuestion = async () => {
     const translatedQuestionText = await translateText(question, questionLanguage);
@@ -30,7 +34,7 @@ const QuizQuestion = ({ question, answers, handleCheckbox, questionLanguage }: P
 
   const translateAnswers = async () => {
     const answersToTranslate = answers.map(answer => answer.answer);
-    const translatedAnswers = await translateText(answersToTranslate, questionLanguage);
+    const translatedAnswers = await translateText(answersToTranslate, answerLanguage);
     const updatedAnswers = answers.map((answer, index) => ({
       ...answer,
       answer: translatedAnswers[index].translatedText,

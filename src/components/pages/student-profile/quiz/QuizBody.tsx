@@ -12,6 +12,7 @@ import ButtonPrimarySmall from "../edit-profile/ButtonPrimarySmall";
 import QuizQuestion from "./QuizQuestion";
 import DropdownNavbar from "@/components/dropdown/DropdownNavbar";
 import DropdownQuestion from "@/components/dropdown/DropdownQuestion";
+import DropdownAnswer from "@/components/dropdown/DropdownAnswer";
 
 const language = [
   { label: "English", language: "en" },
@@ -55,6 +56,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
   const [userAnswers, setUserAnswers] = useState<Array<UserAnswerType>>([]);
   const [showAnswer, setShowAnswer] = useState(false);
   const [questionLanguage, setQuestionLanguage] = useState("en");
+  const [answerLanguage, setAnswerLanguage] = useState("en");
 
   const handleCheckbox = (questionId: number, answerId: string) => {
 
@@ -121,7 +123,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
             <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
               <TextM>Answer</TextM>
               <IconWorld />
-              <DropdownNavbar options={language} />
+              <DropdownAnswer options={language} setAnswerLanguage={setAnswerLanguage} />
             </div>
           </div>
         </div>
@@ -138,6 +140,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
                 question={question}
                 answers={answers}
                 questionLanguage={questionLanguage}
+                answerLanguage={answerLanguage}
               />
             ))}
           </div>
