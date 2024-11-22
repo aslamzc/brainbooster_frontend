@@ -65,9 +65,6 @@ const QuizGridAllCards = () => {
             ))}
           </div>
         }
-        {/* <div className="mx-auto mt-10 w-fit">
-          <ButtonPagination />
-        </div> */}
       </div>
     </section>
   );
