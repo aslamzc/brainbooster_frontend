@@ -17,7 +17,7 @@ type QuizeType = {
   userName: string
 }
 
-const BlogGridAllCards = () => {
+const QuizGridAllCards = () => {
 
   const { language } = useLanguage();
 
@@ -76,4 +76,4 @@ const BlogGridAllCards = () => {
   );
 };
 
-export default BlogGridAllCards;
+export default QuizGridAllCards;

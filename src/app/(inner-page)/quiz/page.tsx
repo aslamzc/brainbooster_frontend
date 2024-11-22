@@ -1,6 +1,6 @@
 "use client";
 import NewsLetter from "@/components/pages/about-us/NewsLetter";
-import BlogGridAllCards from "@/components/pages/blog-grid/BlogGridAllCards";
+import QuizGridAllCards from "@/components/pages/blog-grid/QuizGridAllCards";
 import CourseOneBannerWithLabel from "@/components/pages/course-one/CourseOneBannerWithLabel";
 import { useEffect, useState } from "react";
 import { aboutCoursesData } from "../../../../public/data/aboutCoursesData";
@@ -35,7 +35,7 @@ const BlogGrid = () => {
         buttonText={buttonData}
         handleTabClick={handleTabClick}
       />
-      <BlogGridAllCards />
+      <QuizGridAllCards />
 
       <div className="section-gap-top">
         {/* <NewsLetter /> */}
