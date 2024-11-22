@@ -1,18 +1,15 @@
 "use client";
-import course from "@/../public/images/student-profile/course.png";
 import BorderHorizontalN40 from "@/components/customBorder/BorderHorizontalN40";
 import H3 from "@/components/sharedComponents/H3";
 import TextM from "@/components/sharedComponents/TextM";
 import { IconCheck, IconX, IconWorld } from "@tabler/icons-react";
-import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { quizData } from "../../../../../public/data/quiaData";
 import ButtonPrimarySmall from "../edit-profile/ButtonPrimarySmall";
 import QuizQuestion from "./QuizQuestion";
-import DropdownNavbar from "@/components/dropdown/DropdownNavbar";
 import DropdownQuestion from "@/components/dropdown/DropdownQuestion";
 import DropdownAnswer from "@/components/dropdown/DropdownAnswer";
+import translateText from "@/utils/googleTranslate";
 
 const language = [
   { label: "English", language: "en" },
@@ -58,6 +55,10 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
   const [questionLanguage, setQuestionLanguage] = useState("en");
   const [answerLanguage, setAnswerLanguage] = useState("en");
 
+  useEffect(() => {
+    translateUserAnswers();
+  }, [questionLanguage, answerLanguage]);
+
   const handleCheckbox = (questionId: number, answerId: string) => {
 
     const existingAnswer = userAnswers.find((item) => item.questionId === questionId);
@@ -84,9 +85,6 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
         },
       ]);
     }
-
-    console.log(userAnswers);
-
   };
 
   const getAnswerDetails = (questionId: number, answerId: number) => {
@@ -102,10 +100,31 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
     return null;
   };
 
-  const handleShowAnswer = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
-  ) => {
+  const handleShowAnswer = async (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
+    await translateUserAnswers();
     setShowAnswer(!showAnswer);
+  };
+
+  const translateUserAnswers = async () => {
+    if (userAnswers.length !== 0) {
+      const questionsToTranslate = userAnswers.map((item) => item.question);
+      const correctAnswersToTranslate = userAnswers.map((item) => item.correctAnswer);
+      const userAnswersToTranslate = userAnswers.map((item) => item.answer);
+
+      const translatedQuestions = await translateText(questionsToTranslate, questionLanguage);
+      const translatedCorrectAnswers = await translateText(correctAnswersToTranslate, answerLanguage);
+      const translatedUserAnswers = await translateText(userAnswersToTranslate, answerLanguage);
+
+      const updatedUserAnswers = userAnswers.map((item, index) => (
+        {
+          ...item,
+          question: translatedQuestions[index].translatedText,
+          correctAnswer: translatedCorrectAnswers[index].translatedText,
+          answer: translatedUserAnswers[index].translatedText,
+        }
+      ));
+      setUserAnswers(updatedUserAnswers);
+    }
   };
 
   return (
