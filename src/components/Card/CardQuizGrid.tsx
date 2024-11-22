@@ -13,7 +13,7 @@ type QuizeType = {
   userName: string
 }
 
-const CardQuizGrid = ({ title, description, userName }: QuizeType) => {
+const CardQuizGrid = ({ id, title, description, userName }: QuizeType) => {
   return (
     <div className="flex max-w-[400px] flex-col items-center gap-6 self-stretch">
       <div>
@@ -24,7 +24,7 @@ const CardQuizGrid = ({ title, description, userName }: QuizeType) => {
             </div>
           </div>
           <H4>
-            <Link href="/">{title}</Link>
+            <Link href={`quiz/${id}`}>{title}</Link>
           </H4>
           <TextM>{description}</TextM>
         </div>
