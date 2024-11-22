@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import CardQuizGrid from "@/components/Card/CardQuizGrid";
-import ButtonPagination from "@/components/button/ButtonPagination";
-import { blogGridData } from "../../../../public/data/blogGridData";
 import axios from "@/utils/axios";
 import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
 import Loading from "@/app/loading";
-import { set } from "react-hook-form";
 
 //types
 type QuizeType = {
