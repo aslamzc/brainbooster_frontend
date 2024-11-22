@@ -10,6 +10,7 @@ import QuizQuestion from "./QuizQuestion";
 import DropdownQuestion from "@/components/dropdown/DropdownQuestion";
 import DropdownAnswer from "@/components/dropdown/DropdownAnswer";
 import translateText from "@/utils/googleTranslate";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
 
 const language = [
   { label: "English", language: "en" },
@@ -54,10 +55,22 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
   const [showAnswer, setShowAnswer] = useState(false);
   const [questionLanguage, setQuestionLanguage] = useState("en");
   const [answerLanguage, setAnswerLanguage] = useState("en");
+  const [titleTr, setTitleTr] = useState(title);
+
+  const { language: siteLanguage } = useLanguage();
+
+  useEffect(() => {
+    translateTitle();
+  }, [siteLanguage]);
 
   useEffect(() => {
     translateUserAnswers();
   }, [questionLanguage, answerLanguage]);
+
+  const translateTitle = async () => {
+    const translatedTitle = await translateText(title, siteLanguage);
+    setTitleTr(translatedTitle[0].translatedText);
+  }
 
   const handleCheckbox = (questionId: number, answerId: string) => {
 
@@ -132,7 +145,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
       {" "}
       <div className="flex items-center gap-6 max-lg:flex-col xl:gap-10">
         <div className="flex flex-col gap-4">
-          <H3>{title}</H3>
+          <H3>{titleTr}</H3>
           <div className="flex flex-row gap-4">
             <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
               <TextM>Question</TextM>
