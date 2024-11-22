@@ -5,7 +5,7 @@ import CourseOneBannerWithLabel from "@/components/pages/course-one/CourseOneBan
 import { useEffect, useState } from "react";
 import { aboutCoursesData } from "../../../../public/data/aboutCoursesData";
 
-const BlogGrid = () => {
+const QuizGrid = () => {
   const [courseList, setCourseList] = useState(aboutCoursesData);
   const [buttonData, setButtonData] = useState<string[]>([]);
 
@@ -44,4 +44,4 @@ const BlogGrid = () => {
   );
 };
 
-export default BlogGrid;
+export default QuizGrid;
