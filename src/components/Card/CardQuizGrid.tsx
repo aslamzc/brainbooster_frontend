@@ -22,7 +22,7 @@ type QuizeType = {
   userName: string
 }
 
-const CardBlogGrid = ({ title, description, createdAt, userName }: QuizeType) => {
+const CardQuizGrid = ({ title, description, createdAt, userName }: QuizeType) => {
   return (
     <div className="flex max-w-[400px] flex-col items-center gap-6 self-stretch">
       {/* <div className="relative ">
@@ -60,4 +60,4 @@ const CardBlogGrid = ({ title, description, createdAt, userName }: QuizeType) =>
   );
 };
 
-export default CardBlogGrid;
+export default CardQuizGrid;

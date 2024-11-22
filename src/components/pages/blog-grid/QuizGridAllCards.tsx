@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CardBlogGrid from "@/components/Card/CardBlogGrid";
+import CardQuizGrid from "@/components/Card/CardQuizGrid";
 import ButtonPagination from "@/components/button/ButtonPagination";
 import { blogGridData } from "../../../../public/data/blogGridData";
 import axios from "@/utils/axios";
@@ -64,7 +64,7 @@ const QuizGridAllCards = () => {
         {!loading &&
           <div className="grid items-center justify-center gap-12 md:grid-cols-2 xl:grid-cols-3">
             {quizzes?.map((quiz) => (
-              <CardBlogGrid key={quiz.id} {...quiz} />
+              <CardQuizGrid key={quiz.id} {...quiz} />
             ))}
           </div>
         }
