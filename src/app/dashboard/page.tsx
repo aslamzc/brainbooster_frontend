@@ -1,9 +1,10 @@
-import CourseOne from "@/components/pages/student-profile/course-resume/CourseOne";
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
 const DashboardPage = () => {
   return (
     <>
-     <h1>Aslam</h1>
+     <Button variant="contained">Hello world</Button>
     </>
   );
 };

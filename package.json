@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@fontsource/roboto": "^5.1.0",
     "@headlessui/react": "^1.7.17",
     "@hookform/resolvers": "^3.9.0",
+    "@mui/icons-material": "^6.1.8",
+    "@mui/material": "^6.1.8",
     "@reduxjs/toolkit": "^1.9.7",
     "@tabler/icons-react": "^2.40.0",
     "@types/react-modal-video": "^1.2.3",
