@@ -1,10 +1,15 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import type { Metadata } from "next";
+import { Typography } from '@mui/material';
+
+export const metadata: Metadata = {
+  title: "Dashboard | BrainBooster",
+  description: "Dashboard",
+};
 
 const DashboardPage = () => {
   return (
     <>
-     <Button variant="contained">Hello world</Button>
+      <Typography variant="h6">Welcome</Typography>
     </>
   );
 };
