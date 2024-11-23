@@ -18,17 +18,8 @@ export const metadata: Metadata = {
 const HomeFour = () => {
   return (
     <>
-      <NavbarFour />
       <BannerFour />
-      {/* <TrustPilot /> */}
       <OnlineCourses />
-      {/* <HomeFourAboutUs /> */}
-      {/* <HomeFourCourses /> */}
-      {/* <HomeFourInfo /> */}
-      {/* <HomeFourBestPlatform /> */}
-      {/* <TopInstructor /> */}
-      {/* <HomeFourTestimonial /> */}
-      {/* <FooterHomeFour /> */}
     </>
   );
 };
