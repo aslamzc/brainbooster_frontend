@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Typography } from '@mui/material';
 
 export const metadata: Metadata = {
-  title: "Dashboard | BrainBooster",
-  description: "Dashboard",
+  title: "My Quiz | BrainBooster",
+  description: "My Quiz",
 };
 
 const Page = () => {

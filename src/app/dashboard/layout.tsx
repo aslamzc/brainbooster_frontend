@@ -4,7 +4,7 @@ import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { PageContainer } from '@toolpad/core/PageContainer';
 import { type Navigation } from "@toolpad/core/AppProvider";
-import HomeIcon from '@mui/icons-material/Home';
+import QuizIcon from '@mui/icons-material/Quiz';
 
 export const metadata: Metadata = {
   title: "Dashboard | BrainBooster",
@@ -13,21 +13,21 @@ export const metadata: Metadata = {
 
 const NAVIGATION: Navigation = [
   {
-    segment: '',
-    title: 'Home',
-    icon: <HomeIcon />,
-  },
-  {
     segment: 'dashboard',
     title: 'Dashboard',
     icon: <DashboardIcon />,
+  },
+  {
+    segment: 'dashboard/my-quiz',
+    title: 'My Quiz',
+    icon: <QuizIcon />,
   },
   {
     kind: 'divider',
   },
 ];
 
-export default function Dashboard({ children }: { children: React.ReactNode; }) {
+export default function Layout({ children }: { children: React.ReactNode; }) {
   return (
     <AppProvider
       navigation={NAVIGATION}
