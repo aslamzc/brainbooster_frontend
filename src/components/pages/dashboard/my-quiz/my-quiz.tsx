@@ -2,8 +2,16 @@
 import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useState } from 'react';
 
+
+type QuestionType = {
+    question: string,
+    answer: Array<string>
+    correctAnswer: number
+}
 const MyQuiz = () => {
+    const [questions, setQuestions] = useState<Array<QuestionType>>([]);
     return (
         <>
 
