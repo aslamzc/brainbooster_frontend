@@ -5,7 +5,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { PageContainer } from '@toolpad/core/PageContainer';
 import { type Navigation } from "@toolpad/core/AppProvider";
 import QuizIcon from '@mui/icons-material/Quiz';
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Dashboard | BrainBooster",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Typography } from '@mui/material';
+import MyQuiz from "@/components/pages/dashboard/my-quiz/my-quiz";
 
 export const metadata: Metadata = {
   title: "My Quiz | BrainBooster",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <Typography variant="h6">Welcome</Typography>
+      <MyQuiz></MyQuiz>
     </>
   );
 };
