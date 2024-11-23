@@ -7,8 +7,8 @@ export const navbarData = [
   },
   {
     id: uuidv4(),
-    menuTitle: "Create Quiz",
-    path: "/quiz",
+    menuTitle: "Dashboard",
+    path: "/dashboard",
   },
   {
     id: uuidv4(),
