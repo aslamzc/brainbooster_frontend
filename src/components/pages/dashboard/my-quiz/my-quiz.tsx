@@ -68,21 +68,21 @@ const MyQuiz = () => {
                                 {index !== expanded && question.question}
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Grid container spacing={2}>
+                                <Grid container spacing={2} justifyContent="space-between" alignItems="center">
                                     <Grid size={12}>
-                                        <TextField value={question.question} label="Quesion" variant="standard" fullWidth />
+                                        <TextField label="Quesion" variant="standard" fullWidth />
                                     </Grid>
                                     <Grid size={6}>
-                                        <TextField value={question.answer[0]} label="Answer 1" variant="standard" fullWidth />
+                                        <TextField label="Answer 1" variant="standard" fullWidth />
                                     </Grid>
                                     <Grid size={6}>
-                                        <TextField value={question.answer[1]} label="Answer 2" variant="standard" fullWidth />
+                                        <TextField label="Answer 2" variant="standard" fullWidth />
                                     </Grid>
                                     <Grid size={6}>
-                                        <TextField value={question.answer[2]} label="Answer 3" variant="standard" fullWidth />
+                                        <TextField label="Answer 3" variant="standard" fullWidth />
                                     </Grid>
                                     <Grid size={6}>
-                                        <TextField value={question.answer[3]} label="Answer 4" variant="standard" fullWidth />
+                                        <TextField label="Answer 4" variant="standard" fullWidth />
                                     </Grid>
                                     <Grid size={6}>
                                         <Autocomplete
@@ -95,6 +95,15 @@ const MyQuiz = () => {
                                                 />
                                             }
                                         />
+                                    </Grid>
+                                    <Grid>
+                                        <Button
+                                            variant="contained"
+                                            color='error'
+                                            onClick={() => setQuestions(questions.filter((_, i) => i !== index))}
+                                        >
+                                            Remove Question
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </AccordionDetails>
