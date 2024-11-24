@@ -1,31 +1,41 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
+export { Controller }
+
 //defaultValues
 const defaultValues = {
-    email: '',
-    password: ''
+    title: '',
+    description: '',
+    language: '',
+    status: '',
 }
 
 //validation
 const schema = Yup.object({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required')
+    title: Yup.string().required().label('Title'),
+    description: Yup.string().required().label('Description'),
+    language: Yup.object().required().label('Language').transform((_, originalValue) => {
+        return originalValue === '' ? null : originalValue;
+    }),
+    status: Yup.object().required().label('Status').transform((_, originalValue) => {
+        return originalValue === '' ? null : originalValue;
+    }),
 });
 
 //schema
-const LoginSchema = {
+const QuizCreateSchema = {
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
 }
 
 //type
-export type loginFormType = Yup.InferType<typeof schema>;
+export type QuizCreateFormType = Yup.InferType<typeof schema>;
 
 //form hook
 export const form = () => {
-    return useForm<loginFormType>(LoginSchema);
+    return useForm<QuizCreateFormType>(QuizCreateSchema);
 };
 
 export const questionObj = {
@@ -37,4 +47,10 @@ export const questionObj = {
         ""
     ],
     correctAnswer: null
+}
+
+export type QuestionType = {
+    question: string,
+    answer: Array<string>
+    correctAnswer: number | null
 }
