@@ -9,7 +9,7 @@ const MyQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
     const { handleSubmit, control, getValues, setValue, watch } = form();
 
-    const formValues = watch('questions');
+    watch('questions');
 
     const onSubmit = (data: QuizCreateFormType) => {
         console.log(data);
@@ -217,15 +217,18 @@ const MyQuiz = () => {
                                                 )}
                                             />
                                         </Grid>
-                                        {/* <Grid>
+                                        <Grid>
                                             <Button
                                                 variant="contained"
                                                 color='error'
-                                                onClick={() => setQuestions(questions.filter((_, i) => i !== index))}
+                                                onClick={() => {
+                                                    const updatedQuestions = getValues('questions')?.filter((_, idx) => idx !== index);
+                                                    setValue('questions', updatedQuestions);
+                                                }}
                                             >
                                                 Remove Question
                                             </Button>
-                                        </Grid> */}
+                                        </Grid>
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>
