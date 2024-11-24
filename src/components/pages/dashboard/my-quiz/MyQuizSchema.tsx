@@ -21,7 +21,7 @@ const defaultValues = {
     description: '',
     language: '',
     status: '',
-    questions: [questionObj]
+    questions: []
 }
 
 //validation

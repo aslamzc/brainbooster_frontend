@@ -3,11 +3,13 @@ import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, Te
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
-import { form, QuizCreateFormType, Controller, questionObj, QuestionType } from './MyQuizSchema';
+import { form, QuizCreateFormType, Controller, questionObj } from './MyQuizSchema';
 
 const MyQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
-    const { handleSubmit, control, getValues, setValue } = form();
+    const { handleSubmit, control, getValues, setValue, watch } = form();
+
+    const formValues = watch('questions');
 
     const onSubmit = (data: QuizCreateFormType) => {
         console.log(data);
