@@ -6,6 +6,7 @@ import { PageContainer } from '@toolpad/core/PageContainer';
 import { type Navigation } from "@toolpad/core/AppProvider";
 import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
+import AddIcon from '@mui/icons-material/Add';
 
 export const metadata: Metadata = {
   title: "Dashboard | BrainBooster",
@@ -22,6 +23,11 @@ const NAVIGATION: Navigation = [
     segment: 'dashboard/my-quiz',
     title: 'My Quiz',
     icon: <QuizIcon />,
+  },
+  {
+    segment: 'dashboard/create-quiz',
+    title: 'Create Quiz',
+    icon: <AddIcon />,
   },
   {
     kind: 'divider',
