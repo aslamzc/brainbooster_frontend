@@ -4,17 +4,6 @@ import * as Yup from 'yup';
 
 export { Controller }
 
-export const questionObj = {
-    question: "",
-    answer: [
-        "",
-        "",
-        "",
-        ""
-    ],
-    correctAnswer: ''
-}
-
 //defaultValues
 const defaultValues = {
     title: '',
@@ -62,3 +51,21 @@ export type QuestionType = {
     answer: Array<string>
     correctAnswer: number | null
 }
+
+export const questionObj = {
+    question: "",
+    answer: [
+        "",
+        "",
+        "",
+        ""
+    ],
+    correctAnswer: ''
+}
+
+export const correctAnswerArr = [
+    { value: 0, label: "Answer 1" },
+    { value: 1, label: "Answer 2" },
+    { value: 2, label: "Answer 3" },
+    { value: 3, label: "Answer 4" },
+]

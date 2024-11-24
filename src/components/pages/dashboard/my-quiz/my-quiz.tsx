@@ -3,7 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, Te
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
-import { form, QuizCreateFormType, Controller, questionObj } from './MyQuizSchema';
+import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } from './MyQuizSchema';
 
 const MyQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
@@ -122,7 +122,7 @@ const MyQuiz = () => {
                                                 render={({ field, fieldState: { error } }) => (
                                                     <TextField
                                                         fullWidth
-                                                        label="Quesion"
+                                                        label="Question"
                                                         variant="standard"
                                                         {...field}
                                                         error={!!error}
@@ -202,7 +202,7 @@ const MyQuiz = () => {
                                                 render={({ field: { value, onChange }, fieldState: { error } }) => (
                                                     <Autocomplete
                                                         value={value}
-                                                        options={[{ value: 0, label: "Answer 1" }, { value: 1, label: "Answer 2" }]}
+                                                        options={correctAnswerArr}
                                                         onChange={(_, selectedOptions) => onChange(selectedOptions)}
                                                         renderInput={(params) =>
                                                             <TextField
