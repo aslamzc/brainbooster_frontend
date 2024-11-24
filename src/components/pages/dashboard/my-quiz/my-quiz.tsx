@@ -229,7 +229,7 @@ const MyQuiz = () => {
                             </Accordion>
                         ))}
                     </Grid>
-                    <Button variant="contained" onClick={() => setValue('questions', [...getValues('questions'), questionObj])}>
+                    <Button variant="contained" onClick={() => setValue('questions', [...getValues('questions') ?? [], questionObj])}>
                         Add Question
                     </Button>
                 </Grid>
