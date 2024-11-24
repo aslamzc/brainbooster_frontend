@@ -6,10 +6,8 @@ import { useState } from 'react';
 import { form, QuizCreateFormType, Controller, questionObj, QuestionType } from './MyQuizSchema';
 
 const MyQuiz = () => {
-    const [questions, setQuestions] = useState<Array<QuestionType>>([questionObj]);
     const [expanded, setExpanded] = useState<number | null>(null);
-
-    const { handleSubmit, control } = form();
+    const { handleSubmit, control, getValues, setValue } = form();
 
     const onSubmit = (data: QuizCreateFormType) => {
         console.log(data);
@@ -100,7 +98,7 @@ const MyQuiz = () => {
                 <Grid container spacing={1} justifyContent="flex-end"
                     alignItems="flex-end">
                     <Grid size={12}>
-                        {questions.map((question, index) => (
+                        {getValues('questions')?.map((question, index) => (
                             <Accordion
                                 key={index}
                                 expanded={expanded === index}
@@ -116,33 +114,108 @@ const MyQuiz = () => {
                                 <AccordionDetails>
                                     <Grid container spacing={2} justifyContent="space-between" alignItems="center">
                                         <Grid size={12}>
-                                            <TextField label="Quesion" variant="standard" fullWidth />
-                                        </Grid>
-                                        <Grid size={6}>
-                                            <TextField label="Answer 1" variant="standard" fullWidth />
-                                        </Grid>
-                                        <Grid size={6}>
-                                            <TextField label="Answer 2" variant="standard" fullWidth />
-                                        </Grid>
-                                        <Grid size={6}>
-                                            <TextField label="Answer 3" variant="standard" fullWidth />
-                                        </Grid>
-                                        <Grid size={6}>
-                                            <TextField label="Answer 4" variant="standard" fullWidth />
-                                        </Grid>
-                                        <Grid size={6}>
-                                            <Autocomplete
-                                                options={[]}
-                                                renderInput={(params) =>
+                                            <Controller
+                                                name={`questions.${index}.question`}
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
                                                     <TextField
-                                                        {...params}
-                                                        label="Correct Answer"
+                                                        fullWidth
+                                                        label="Quesion"
                                                         variant="standard"
+                                                        {...field}
+                                                        error={!!error}
+                                                        helperText={error?.message}
                                                     />
-                                                }
+                                                )}
                                             />
                                         </Grid>
-                                        <Grid>
+                                        <Grid size={6}>
+                                            <Controller
+                                                name={`questions.${index}.answer.0`}
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
+                                                    <TextField
+                                                        fullWidth
+                                                        label="Answer 1"
+                                                        variant="standard"
+                                                        {...field}
+                                                        error={!!error}
+                                                        helperText={error?.message}
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        <Grid size={6}>
+                                            <Controller
+                                                name={`questions.${index}.answer.1`}
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
+                                                    <TextField
+                                                        fullWidth
+                                                        label="Answer 2"
+                                                        variant="standard"
+                                                        {...field}
+                                                        error={!!error}
+                                                        helperText={error?.message}
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        <Grid size={6}>
+                                            <Controller
+                                                name={`questions.${index}.answer.2`}
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
+                                                    <TextField
+                                                        fullWidth
+                                                        label="Answer 3"
+                                                        variant="standard"
+                                                        {...field}
+                                                        error={!!error}
+                                                        helperText={error?.message}
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        <Grid size={6}>
+                                            <Controller
+                                                name={`questions.${index}.answer.3`}
+                                                control={control}
+                                                render={({ field, fieldState: { error } }) => (
+                                                    <TextField
+                                                        fullWidth
+                                                        label="Answer 4"
+                                                        variant="standard"
+                                                        {...field}
+                                                        error={!!error}
+                                                        helperText={error?.message}
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        <Grid size={6}>
+                                            <Controller
+                                                name={`questions.${index}.correctAnswer`}
+                                                control={control}
+                                                render={({ field: { value, onChange }, fieldState: { error } }) => (
+                                                    <Autocomplete
+                                                        value={value}
+                                                        options={[{ value: 0, label: "Answer 1" }, { value: 1, label: "Answer 2" }]}
+                                                        onChange={(_, selectedOptions) => onChange(selectedOptions)}
+                                                        renderInput={(params) =>
+                                                            <TextField
+                                                                {...params}
+                                                                label="Correct Answer"
+                                                                variant="standard"
+                                                                error={!!error}
+                                                                helperText={error?.message}
+                                                            />
+                                                        }
+                                                    />
+                                                )}
+                                            />
+                                        </Grid>
+                                        {/* <Grid>
                                             <Button
                                                 variant="contained"
                                                 color='error'
@@ -150,13 +223,13 @@ const MyQuiz = () => {
                                             >
                                                 Remove Question
                                             </Button>
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
                                 </AccordionDetails>
                             </Accordion>
                         ))}
                     </Grid>
-                    <Button variant="contained" onClick={() => setQuestions([...questions, questionObj])}>
+                    <Button variant="contained" onClick={() => setValue('questions', [...getValues('questions'), questionObj])}>
                         Add Question
                     </Button>
                 </Grid>
