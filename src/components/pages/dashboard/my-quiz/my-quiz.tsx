@@ -5,16 +5,25 @@ import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, Te
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } from './MyQuizSchema';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useNotifications } from '@toolpad/core/useNotifications';
 
 const MyQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
+    const [loading, setLoading] = useState(false);
+    const notifications = useNotifications();
     const { handleSubmit, control, getValues, setValue, watch } = form();
 
     watch('questions');
 
     const onSubmit = async (data: QuizCreateFormType) => {
         try {
+            setLoading(true);
             await axios.post('/quiz/create', data);
+            setLoading(false);
+            notifications.show('Quiz created successfully', {
+                severity: 'success', autoHideDuration: 3000
+            });
         } catch (error) {
             console.error(error);
         }
@@ -245,10 +254,16 @@ const MyQuiz = () => {
                 </Grid>
                 <br />
                 <Grid container spacing={1} justifyContent="flex-end" alignItems="flex-end">
-                    <Grid >
-                        <Button variant="contained" type="submit" color='success'>
+                    <Grid>
+                        <LoadingButton
+                            loading={loading}
+                            disabled={getValues('questions')?.length === 0}
+                            type="submit"
+                            variant="contained"
+                            color='success'
+                        >
                             Create
-                        </Button>
+                        </LoadingButton>
                     </Grid>
                 </Grid>
             </form>
