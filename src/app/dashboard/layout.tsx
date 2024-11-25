@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { ReactNode } from "react";
 import { AppProvider } from '@toolpad/core/nextjs';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -7,11 +7,6 @@ import { type Navigation } from "@toolpad/core/AppProvider";
 import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
-
-export const metadata: Metadata = {
-  title: "Dashboard | BrainBooster",
-  description: "Dashboard",
-};
 
 const NAVIGATION: Navigation = [
   {
@@ -34,7 +29,7 @@ const NAVIGATION: Navigation = [
   },
 ];
 
-export default function Layout({ children }: { children: React.ReactNode; }) {
+export default function Layout({ children }: { children: ReactNode; }) {
   return (
     <AppProvider
       navigation={NAVIGATION}
