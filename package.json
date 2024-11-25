@@ -17,6 +17,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^6.1.8",
     "@mui/material": "^6.1.8",
+    "@mui/x-data-grid": "^7.22.3",
     "@reduxjs/toolkit": "^1.9.7",
     "@tabler/icons-react": "^2.40.0",
     "@toolpad/core": "^0.10.0",

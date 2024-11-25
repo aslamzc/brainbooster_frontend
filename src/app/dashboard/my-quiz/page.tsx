@@ -1,3 +1,4 @@
+import QuizList from "@/components/pages/dashboard/quiz/QuizList";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      list
+      <QuizList/>
     </>
   );
 };
