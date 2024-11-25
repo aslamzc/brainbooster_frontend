@@ -7,6 +7,7 @@ import { type Navigation } from "@toolpad/core/AppProvider";
 import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
+import Toolbar from "./Toolbar"; 
 
 const NAVIGATION: Navigation = [
   {
@@ -38,7 +39,11 @@ export default function Layout({ children }: { children: ReactNode; }) {
         logo: <Image src="/Logo.png" alt="logo" width={180} height={100} />
       }}
     >
-      <DashboardLayout>
+      <DashboardLayout
+        slots={{
+          toolbarActions: Toolbar
+        }}
+      >
         <PageContainer>
           {children}
         </PageContainer>
