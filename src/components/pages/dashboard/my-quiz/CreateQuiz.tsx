@@ -8,7 +8,7 @@ import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } f
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 
-const MyQuiz = () => {
+const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
     const notifications = useNotifications();
@@ -271,4 +271,4 @@ const MyQuiz = () => {
     );
 };
 
-export default MyQuiz;
+export default CreateQuiz;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MyQuiz from "@/components/pages/dashboard/my-quiz/my-quiz";
+import CreateQuiz from "@/components/pages/dashboard/my-quiz/CreateQuiz";
 
 export const metadata: Metadata = {
   title: "Create Quiz | BrainBooster",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <MyQuiz/>
+      <CreateQuiz />
     </>
   );
 };
