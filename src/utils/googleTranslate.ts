@@ -1,4 +1,4 @@
-import axios from "./axios";
+import axios from "./axiosGuest";
 
 const API_URL = 'https://translation.googleapis.com/language/translate/v2';
 const API_KEY = 'AIzaSyDPav7ybQRs5zQJMurrp24nW7WCnHXnT5M';

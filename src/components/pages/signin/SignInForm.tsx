@@ -8,14 +8,11 @@ import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySma
 import { form, loginFormType } from "./LoginSchema";
 import axios from "@/utils/axios";
 import Cookies from "js-cookie";
-import { useRouter } from 'next/navigation'
 
 type ResponseType = {
   accessToken: string
 }
 const SignInForm = () => {
-
-  const router = useRouter();
 
   const [passwordShow, setPasswordShow] = useState(false);
 
@@ -34,7 +31,7 @@ const SignInForm = () => {
         expires: expirationTime,
         path: "/",
       });
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
     } catch (error) {
       console.error(error);
     }
