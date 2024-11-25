@@ -12,7 +12,7 @@ const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
     const notifications = useNotifications();
-    const { handleSubmit, control, getValues, setValue, watch } = form();
+    const { handleSubmit, control, getValues, setValue, watch, reset } = form();
 
     watch('questions');
 
@@ -24,6 +24,7 @@ const CreateQuiz = () => {
             notifications.show('Quiz created successfully', {
                 severity: 'success', autoHideDuration: 3000
             });
+            reset();
         } catch (error) {
             console.error(error);
         }
