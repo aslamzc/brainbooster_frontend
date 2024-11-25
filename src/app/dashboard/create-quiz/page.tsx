@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CreateQuiz from "@/components/pages/dashboard/my-quiz/CreateQuiz";
+import CreateQuiz from "@/components/pages/dashboard/quiz/CreateQuiz";
 
 export const metadata: Metadata = {
   title: "Create Quiz | BrainBooster",
