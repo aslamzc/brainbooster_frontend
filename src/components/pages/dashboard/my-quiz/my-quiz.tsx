@@ -1,8 +1,9 @@
 "use client";
+import { useState } from 'react';
+import axios from "@/utils/axios";
 import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState } from 'react';
 import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } from './MyQuizSchema';
 
 const MyQuiz = () => {
@@ -11,8 +12,12 @@ const MyQuiz = () => {
 
     watch('questions');
 
-    const onSubmit = (data: QuizCreateFormType) => {
-        console.log(data);
+    const onSubmit = async (data: QuizCreateFormType) => {
+        try {
+            await axios.post('/quiz/create', data);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
