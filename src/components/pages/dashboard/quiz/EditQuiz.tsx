@@ -36,7 +36,7 @@ const EditQuiz = () => {
         <>
             {quizDetails
                 ?
-                <QuizEditForm defaultValues={quizDetails} />
+                <QuizEditForm defaultValues={quizDetails} quizId={quizId as string} />
                 :
                 <Box className="flex items-start justify-center h-screen flex-col">
                     <h1 className="text-center">Loading...</h1>

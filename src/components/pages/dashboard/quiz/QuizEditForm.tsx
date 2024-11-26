@@ -9,27 +9,27 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 
 type Props = {
-    defaultValues: QuizCreateFormType
+    defaultValues: QuizCreateFormType,
+    quizId: string
 };
 
-const QuizEditForm = ({ defaultValues }: Props) => {
+const QuizEditForm = ({ defaultValues, quizId }: Props) => {
 
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
     const notifications = useNotifications();
-    const { handleSubmit, control, getValues, setValue, watch, reset } = form(defaultValues);
+    const { handleSubmit, control, getValues, setValue, watch } = form(defaultValues);
 
     watch('questions');
 
     const onSubmit = async (data: QuizCreateFormType) => {
         try {
             setLoading(true);
-            await axios.post('/quiz/create', data);
+            await axios.post(`/quiz/update/${quizId}`, data);
             setLoading(false);
-            notifications.show('Quiz created successfully', {
+            notifications.show('Quiz Updated successfully', {
                 severity: 'success', autoHideDuration: 3000
             });
-            reset();
         } catch (error) {
             console.error(error);
         }
@@ -274,7 +274,7 @@ const QuizEditForm = ({ defaultValues }: Props) => {
                             variant="contained"
                             color='success'
                         >
-                            Create
+                            Update
                         </LoadingButton>
                     </Grid>
                 </Grid>
