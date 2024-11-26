@@ -4,7 +4,7 @@ import axios from "@/utils/axios";
 import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } from './QuizEditSchema';
+import { form, QuizCreateFormType, Controller, questionObj, correctAnswerOptions, languageOptions, statusOptions } from './QuizEditSchema';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 
@@ -78,7 +78,7 @@ const QuizEditForm = ({ defaultValues }: Props) => {
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                                 <Autocomplete
                                     value={value}
-                                    options={[{ value: "en", label: "English" }, { value: "si", label: "Sinhala" }]}
+                                    options={languageOptions}
                                     onChange={(_, selectedOptions) => onChange(selectedOptions)}
                                     renderInput={(params) =>
                                         <TextField
@@ -100,7 +100,7 @@ const QuizEditForm = ({ defaultValues }: Props) => {
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                                 <Autocomplete
                                     value={value}
-                                    options={[{ value: "active", label: "Active" }, { value: "inactive", label: "Inactive" }]}
+                                    options={statusOptions}
                                     onChange={(_, selectedOptions) => onChange(selectedOptions)}
                                     renderInput={(params) =>
                                         <TextField
@@ -222,7 +222,7 @@ const QuizEditForm = ({ defaultValues }: Props) => {
                                                 render={({ field: { value, onChange }, fieldState: { error } }) => (
                                                     <Autocomplete
                                                         value={value}
-                                                        options={correctAnswerArr}
+                                                        options={correctAnswerOptions}
                                                         onChange={(_, selectedOptions) => onChange(selectedOptions)}
                                                         renderInput={(params) =>
                                                             <TextField

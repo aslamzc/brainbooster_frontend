@@ -52,9 +52,19 @@ export const questionObj = {
     correctAnswer: ''
 }
 
-export const correctAnswerArr = [
+export const correctAnswerOptions = [
     { value: 0, label: "Answer 1" },
     { value: 1, label: "Answer 2" },
     { value: 2, label: "Answer 3" },
     { value: 3, label: "Answer 4" },
+]
+
+export const statusOptions = [
+    { value: "active", label: "Active" },
+    { value: "inactive", label: "Inactive" }
+]
+
+export const languageOptions = [
+    { value: "en", label: "English" },
+    { value: "si", label: "Sinhala" }
 ]
