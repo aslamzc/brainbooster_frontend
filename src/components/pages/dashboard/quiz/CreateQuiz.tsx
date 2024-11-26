@@ -126,7 +126,7 @@ const CreateQuiz = () => {
                                     aria-controls="panel1-content"
                                     id="panel1-header"
                                 >
-                                    {index !== expanded && question.question}
+                                    {index !== expanded && (question.question ? question.question : 'Add Question')}
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Grid container spacing={2} justifyContent="space-between" alignItems="center">
