@@ -8,11 +8,16 @@ import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } f
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 
-const QuizEditForm = () => {
+type Props = {
+    defaultValues: QuizCreateFormType
+};
+
+const QuizEditForm = ({ defaultValues }: Props) => {
+
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
     const notifications = useNotifications();
-    const { handleSubmit, control, getValues, setValue, watch, reset } = form();
+    const { handleSubmit, control, getValues, setValue, watch, reset } = form(defaultValues);
 
     watch('questions');
 

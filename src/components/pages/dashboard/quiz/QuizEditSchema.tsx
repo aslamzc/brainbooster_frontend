@@ -4,15 +4,6 @@ import * as Yup from 'yup';
 
 export { Controller }
 
-//defaultValues
-const defaultValues = {
-    title: '',
-    description: '',
-    language: '',
-    status: '',
-    questions: []
-}
-
 //validation
 const schema = Yup.object({
     title: Yup.string().required().label('Title'),
@@ -32,17 +23,15 @@ const schema = Yup.object({
     }))
 });
 
-//schema
-const QuizCreateSchema = {
-    defaultValues: defaultValues,
-    resolver: yupResolver(schema)
-}
-
 //type
 export type QuizCreateFormType = Yup.InferType<typeof schema>;
 
 //form hook
-export const form = () => {
+export const form = (defaultValues: QuizCreateFormType) => {
+    const QuizCreateSchema = {
+        defaultValues: defaultValues,
+        resolver: yupResolver(schema)
+    }
     return useForm<QuizCreateFormType>(QuizCreateSchema);
 };
 
