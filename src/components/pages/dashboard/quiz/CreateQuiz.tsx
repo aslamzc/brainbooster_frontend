@@ -9,7 +9,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 
 const CreateQuiz = () => {
-    const [expanded, setExpanded] = useState<number | null>(null);
+    const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
     const notifications = useNotifications();
     const { handleSubmit, control, getValues, setValue, watch, reset } = form();
@@ -249,7 +249,13 @@ const CreateQuiz = () => {
                             </Accordion>
                         ))}
                     </Grid>
-                    <Button variant="contained" onClick={() => setValue('questions', [...getValues('questions') ?? [], questionObj])}>
+                    <Button
+                        variant="contained"
+                        onClick={() => {
+                            setValue('questions', [...getValues('questions') ?? [], questionObj]);
+                            setExpanded((getValues('questions')?.length ?? 0) - 1);
+                        }}
+                    >
                         Add Question
                     </Button>
                 </Grid>
