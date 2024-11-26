@@ -10,7 +10,16 @@ if (accessToken) {
 
 axiosInstance.interceptors.response.use(
   (response) => response.data,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+  (error) => {
+    if (error.response.status === 401) {
+      Cookies.remove('accessToken');
+      window.location.href = "/";
+    }
+    if (error.response.status === 404) {
+      window.location.href = "/not-found";
+    }
+    return Promise.reject((error.response && error.response.data) || 'Something went wrong');
+  }
 );
 
 export default axiosInstance;
