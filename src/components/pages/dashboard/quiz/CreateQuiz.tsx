@@ -15,6 +15,8 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
+    const [quizLoading, setQuizLoading] = useState(false);
+    const [paragraphError, setParagraphError] = useState('');
     const [open, setOpen] = useState(false);
     const [paragraph, setParagraph] = useState('');
     const notifications = useNotifications();
@@ -28,6 +30,7 @@ const CreateQuiz = () => {
 
     const generateQuiz = async () => {
         try {
+            setQuizLoading(true);
             const payload = {
                 text: paragraph
             };
@@ -35,14 +38,14 @@ const CreateQuiz = () => {
             setValue('questions', [...getValues('questions') ?? [], ...data]);
             handleClose();
             setParagraph('');
+            setQuizLoading(false);
             notifications.show('Quiz generated successfully', {
                 severity: 'success', autoHideDuration: 3000
             });
         } catch (error: any) {
             console.error(error);
-            notifications.show(error?.message ?? "Something went wrong", {
-                severity: 'error', autoHideDuration: 3000
-            });
+            setParagraphError(error?.message ?? '');
+            setQuizLoading(false);
         }
     }
 
@@ -334,18 +337,26 @@ const CreateQuiz = () => {
                             minRows={10}
                             maxRows={20}
                             value={paragraph}
-                            onChange={(e) => setParagraph(e.target.value)}
+                            onChange={(e) => {
+                                setParagraph(e.target.value);
+                                setParagraphError('');
+                            }}
+                            error={!!paragraphError}
+                            helperText={paragraphError}
+                            sx={{ "& .MuiFormHelperText-root": { marginLeft: 0 } }}
                         />
                     </Box>
                 </DialogContent>
                 <DialogActions>
-                    <Button
+                    <LoadingButton
+                        loading={quizLoading}
+                        // disabled={getValues('questions')?.length === 0}
                         onClick={generateQuiz}
                         variant="contained"
                         color='primary'
                     >
                         Generate
-                    </Button>
+                    </LoadingButton>
                 </DialogActions>
             </Dialog>
         </>
