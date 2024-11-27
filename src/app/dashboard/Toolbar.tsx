@@ -6,7 +6,7 @@ import { SignOutButton } from '@toolpad/core/Account';
 export default function Toolbar() {
   const logout = () => {
     Cookies.remove('accessToken');
-    window.location.href = "/";
+    window.location.href = "/signin";
   };
   return (
     <>
