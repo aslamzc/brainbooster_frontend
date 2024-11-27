@@ -7,6 +7,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { form, QuizCreateFormType, Controller, questionObj, correctAnswerOptions, languageOptions, statusOptions } from './QuizEditSchema';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import UpdateIcon from '@mui/icons-material/Update';
 
 type Props = {
     defaultValues: QuizCreateFormType,
@@ -245,6 +248,7 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                                                     const updatedQuestions = getValues('questions')?.filter((_, idx) => idx !== index);
                                                     setValue('questions', updatedQuestions);
                                                 }}
+                                                endIcon={<DeleteIcon />}
                                             >
                                                 Remove Question
                                             </Button>
@@ -260,6 +264,7 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                             setValue('questions', [...getValues('questions') ?? [], questionObj]);
                             setExpanded((getValues('questions')?.length ?? 0) - 1);
                         }}
+                        endIcon={<AddIcon />}
                     >
                         Add Question
                     </Button>
@@ -273,6 +278,7 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                             type="submit"
                             variant="contained"
                             color='success'
+                            endIcon={<UpdateIcon />}
                         >
                             Update
                         </LoadingButton>
