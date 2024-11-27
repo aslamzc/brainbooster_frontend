@@ -358,7 +358,7 @@ const CreateQuiz = () => {
                         />
                         <LoadingButton
                             loading={quizLoading}
-                            // disabled={getValues('questions')?.length === 0}
+                            disabled={!!paragraphError}
                             onClick={generateQuiz}
                             variant="contained"
                             color='primary'
