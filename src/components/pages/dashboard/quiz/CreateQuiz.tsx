@@ -333,7 +333,7 @@ const CreateQuiz = () => {
                     <DialogContentText id="alert-dialog-description">
                         Utilizing OpenAI ChatGPT for transforming text paragraphs into engaging quizzes, enabling efficient learning and knowledge assessment.
                     </DialogContentText>
-                    <Box sx={{ mt: 2 }}>
+                    <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <TextField
                             multiline
                             fullWidth
@@ -356,20 +356,18 @@ const CreateQuiz = () => {
                             helperText={paragraphError}
                             sx={{ "& .MuiFormHelperText-root": { marginLeft: 0 } }}
                         />
+                        <LoadingButton
+                            loading={quizLoading}
+                            // disabled={getValues('questions')?.length === 0}
+                            onClick={generateQuiz}
+                            variant="contained"
+                            color='primary'
+                            endIcon={<AutoFixHighIcon />}
+                        >
+                            Generate
+                        </LoadingButton>
                     </Box>
                 </DialogContent>
-                <DialogActions>
-                    <LoadingButton
-                        loading={quizLoading}
-                        // disabled={getValues('questions')?.length === 0}
-                        onClick={generateQuiz}
-                        variant="contained"
-                        color='primary'
-                        endIcon={<AutoFixHighIcon />}
-                    >
-                        Generate
-                    </LoadingButton>
-                </DialogActions>
             </Dialog>
         </>
     );
