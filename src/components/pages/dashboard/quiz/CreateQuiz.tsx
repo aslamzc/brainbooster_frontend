@@ -16,6 +16,7 @@ const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
+    const [paragraph, setParagraph] = useState('');
     const notifications = useNotifications();
     const { handleSubmit, control, getValues, setValue, watch, reset } = form();
 
@@ -25,8 +26,24 @@ const CreateQuiz = () => {
         setOpen(false);
     };
 
-    const generateQuiz = () => {
-
+    const generateQuiz = async () => {
+        try {
+            const payload = {
+                text: paragraph
+            };
+            const { data } = await axios.post('/quiz/generate', payload);
+            setValue('questions', [...getValues('questions') ?? [], ...data]);
+            handleClose();
+            setParagraph('');
+            notifications.show('Quiz generated successfully', {
+                severity: 'success', autoHideDuration: 3000
+            });
+        } catch (error: any) {
+            console.error(error);
+            notifications.show(error?.message ?? "Something went wrong", {
+                severity: 'error', autoHideDuration: 3000
+            });
+        }
     }
 
     const onSubmit = async (data: QuizCreateFormType) => {
@@ -316,6 +333,8 @@ const CreateQuiz = () => {
                             variant="outlined"
                             minRows={10}
                             maxRows={20}
+                            value={paragraph}
+                            onChange={(e) => setParagraph(e.target.value)}
                         />
                     </Box>
                 </DialogContent>
