@@ -11,6 +11,9 @@ import { form, QuizCreateFormType, Controller, questionObj, correctAnswerArr } f
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNotifications } from '@toolpad/core/useNotifications';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import AddIcon from '@mui/icons-material/Add';
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(0);
@@ -273,6 +276,7 @@ const CreateQuiz = () => {
                                                     const updatedQuestions = getValues('questions')?.filter((_, idx) => idx !== index);
                                                     setValue('questions', updatedQuestions);
                                                 }}
+                                                endIcon={<DeleteIcon />}
                                             >
                                                 Remove Question
                                             </Button>
@@ -295,6 +299,7 @@ const CreateQuiz = () => {
                             setValue('questions', [...getValues('questions') ?? [], questionObj]);
                             setExpanded((getValues('questions')?.length ?? 0) - 1);
                         }}
+                        endIcon={<AddIcon />}
                     >
                         Add Question
                     </Button>
@@ -308,6 +313,7 @@ const CreateQuiz = () => {
                             type="submit"
                             variant="contained"
                             color='success'
+                            endIcon={<CreateIcon />}
                         >
                             Create
                         </LoadingButton>
@@ -338,8 +344,13 @@ const CreateQuiz = () => {
                             maxRows={20}
                             value={paragraph}
                             onChange={(e) => {
-                                setParagraph(e.target.value);
-                                setParagraphError('');
+                                const value = e.target.value;
+                                if (value.length < 100) {
+                                    setParagraphError('At least 100 characters required');
+                                } else {
+                                    setParagraphError('');
+                                }
+                                setParagraph(value);
                             }}
                             error={!!paragraphError}
                             helperText={paragraphError}
@@ -354,6 +365,7 @@ const CreateQuiz = () => {
                         onClick={generateQuiz}
                         variant="contained"
                         color='primary'
+                        endIcon={<AutoFixHighIcon />}
                     >
                         Generate
                     </LoadingButton>
