@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { AppProvider } from '@toolpad/core/nextjs';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import { PageContainer } from '@toolpad/core/PageContainer';
 import { type Navigation } from "@toolpad/core/AppProvider";
 import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
@@ -44,9 +43,7 @@ export default function Layout({ children }: { children: ReactNode; }) {
           toolbarActions: Toolbar
         }}
       >
-        <PageContainer>
-          {children}
-        </PageContainer>
+        {children}
       </DashboardLayout>
     </AppProvider>
   );
