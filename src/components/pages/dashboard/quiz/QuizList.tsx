@@ -26,7 +26,7 @@ const QuizList = () => {
                     variant="contained"
                     color="primary"
                     size="small"
-                    endIcon={<EditIcon />}
+                    startIcon={<EditIcon />}
                     onClick={() => push(`/dashboard/quiz/edit/${params.row.id}`)}
                 >
                     Edit
