@@ -11,10 +11,6 @@ if (accessToken) {
 axiosInstance.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    if (error.response.status === 401) {
-      Cookies.remove('accessToken');
-      window.location.href = "/";
-    }
     if (error.response.status === 404) {
       window.location.href = "/not-found";
     }
