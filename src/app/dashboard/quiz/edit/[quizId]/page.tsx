@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 const Page = () => {
   const breadcrumbs: Breadcrumb[] = [
     { title: "Dashboard", path: "/dashboard" },
-    { title: "Quiz", path: "/dashboard/quiz" },
-    { title: "Quiz Edit", path: "dashboard/quiz/edit" },
+    { title: "Quiz List", path: "/dashboard/quiz" },
+    { title: "Quiz Edit", path: "/dashboard/quiz/edit" },
   ]
   return (
     <>

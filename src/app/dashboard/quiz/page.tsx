@@ -1,5 +1,6 @@
 import QuizList from "@/components/pages/dashboard/quiz/QuizList";
 import type { Metadata } from "next";
+import { PageContainer } from '@toolpad/core/PageContainer';
 
 export const metadata: Metadata = {
   title: "Quiz List | BrainBooster",
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <QuizList />
+      <PageContainer>
+        <QuizList />
+      </PageContainer>
     </>
   );
 };
