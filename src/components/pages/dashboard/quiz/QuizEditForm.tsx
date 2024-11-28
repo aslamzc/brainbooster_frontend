@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import axios from "@/utils/axios";
-import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Button, TextField } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { form, QuizCreateFormType, Controller, questionObj, correctAnswerOptions, languageOptions, statusOptions } from './QuizEditSchema';
@@ -10,6 +10,7 @@ import { useNotifications } from '@toolpad/core/useNotifications';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import UpdateIcon from '@mui/icons-material/Update';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 type Props = {
     defaultValues: QuizCreateFormType,
@@ -20,10 +21,39 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
 
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
+    const [quizLoading, setQuizLoading] = useState(false);
+    const [paragraphError, setParagraphError] = useState('');
+    const [open, setOpen] = useState(false);
+    const [paragraph, setParagraph] = useState('');
     const notifications = useNotifications();
     const { handleSubmit, control, getValues, setValue, watch } = form(defaultValues);
 
     watch('questions');
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const generateQuiz = async () => {
+        try {
+            setQuizLoading(true);
+            const payload = {
+                text: paragraph
+            };
+            const { data } = await axios.post('/quiz/generate', payload);
+            setValue('questions', [...getValues('questions') ?? [], ...data]);
+            handleClose();
+            setParagraph('');
+            setQuizLoading(false);
+            notifications.show('Quiz generated successfully', {
+                severity: 'success', autoHideDuration: 3000
+            });
+        } catch (error: any) {
+            console.error(error);
+            setParagraphError(error?.message ?? '');
+            setQuizLoading(false);
+        }
+    }
 
     const onSubmit = async (data: QuizCreateFormType) => {
         try {
@@ -260,6 +290,13 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                     </Grid>
                     <Button
                         variant="contained"
+                        onClick={() => { setOpen(true) }}
+                        endIcon={<AutoFixHighIcon />}
+                    >
+                        Generate Quiz
+                    </Button>
+                    <Button
+                        variant="contained"
                         onClick={() => {
                             setValue('questions', [...getValues('questions') ?? [], questionObj]);
                             setExpanded((getValues('questions')?.length ?? 0) - 1);
@@ -285,6 +322,55 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                     </Grid>
                 </Grid>
             </form>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    Paragraph to Quiz Generation
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Utilizing OpenAI ChatGPT for transforming text paragraphs into engaging quizzes, enabling efficient learning and knowledge assessment.
+                    </DialogContentText>
+                    <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <TextField
+                            multiline
+                            fullWidth
+                            label="Paragraph"
+                            name="paragraph"
+                            variant="outlined"
+                            minRows={10}
+                            maxRows={20}
+                            value={paragraph}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value.length < 100) {
+                                    setParagraphError('At least 100 characters required');
+                                } else {
+                                    setParagraphError('');
+                                }
+                                setParagraph(value);
+                            }}
+                            error={!!paragraphError}
+                            helperText={paragraphError}
+                            sx={{ "& .MuiFormHelperText-root": { marginLeft: 0 } }}
+                        />
+                        <LoadingButton
+                            loading={quizLoading}
+                            disabled={!!paragraphError}
+                            onClick={generateQuiz}
+                            variant="contained"
+                            color='primary'
+                            endIcon={<AutoFixHighIcon />}
+                        >
+                            Generate
+                        </LoadingButton>
+                    </Box>
+                </DialogContent>
+            </Dialog>
         </>
     );
 };
