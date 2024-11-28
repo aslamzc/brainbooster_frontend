@@ -1,61 +1,80 @@
 "use client";
-import { DataGrid, GridColDef,DEFAULT_GRID_AUTOSIZE_OPTIONS } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
-
-const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', },
-    { field: 'firstName', headerName: 'First name', },
-    { field: 'lastName', headerName: 'Last name' },
-    {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
-
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-
-        valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
-];
-
-
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+import { useEffect, useState } from 'react';
+import { Box, Button } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { useRouter } from "next/navigation";
+import axios from "@/utils/axios";
 
 const paginationModel = { page: 0, pageSize: 5 };
 
 const QuizList = () => {
+    const { push } = useRouter();
+    const [rows, setRows] = useState([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const columns: GridColDef[] = [
+        { field: 'title', headerName: 'Title', flex: 1 },
+        { field: 'description', headerName: 'Description', flex: 1 },
+        { field: 'language', headerName: 'Language', flex: 1 },
+        { field: 'status', headerName: 'Status', flex: 1 },
+        {
+            field: 'actions',
+            headerName: 'Actions',
+            renderCell: (params) => (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    endIcon={<EditIcon />}
+                    onClick={() => push(`/dashboard/quiz/edit/${params.row.id}`)}
+                >
+                    Edit
+                </Button>
+            )
+        }
+        // {
+        //     field: 'fullName',
+        //     headerName: 'Full name',
+        //     description: 'This column has a value getter and is not sortable.',
+        //     sortable: false,
+
+        //     valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+        // },
+    ];
+    useEffect(() => {
+        getInitialData();
+    }, []);
+
+    const getInitialData = async () => {
+        try {
+            setLoading(true);
+            const { data } = await axios.get('/quiz/user-quizzes');
+            setRows(data);
+            setLoading(false);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <>
-            <Paper sx={{ width: '100%' }}>
-                <DataGrid
-                 autosizeOptions={{
-                    columns: ['id', 'firstName', 'lastName', 'age', 'fullName'],
-                    includeOutliers: true,
-                    includeHeaders: true,
-                    expand: true
-                  }}
-                
-                    rows={rows}
-                    columns={columns}
-                    initialState={{ pagination: { paginationModel } }}
-                    pageSizeOptions={[5, 10]}
-                    sx={{ border: 0 }}
-                />
-            </Paper>
+            {!!rows.length && !loading
+                ?
+                <Paper sx={{ width: '100%' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        initialState={{ pagination: { paginationModel } }}
+                        pageSizeOptions={[5, 10]}
+                        sx={{ border: 0 }}
+                    />
+                </Paper>
+                :
+                <Box className="flex items-start justify-center h-screen flex-col">
+                    <h1 className="text-center">Loading...</h1>
+                </Box>
+            }
         </>
     );
 }
