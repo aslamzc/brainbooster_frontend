@@ -17,7 +17,7 @@ const NAVIGATION: Navigation = [
   },
   {
     segment: 'dashboard/quiz',
-    title: 'Quiz',
+    title: 'Quiz List',
     icon: <QuizIcon />,
   },
   {
