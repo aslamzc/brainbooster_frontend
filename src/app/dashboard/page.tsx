@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Typography } from '@mui/material';
+import { PageContainer } from '@toolpad/core/PageContainer';
 
 export const metadata: Metadata = {
   title: "Dashboard | BrainBooster",
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 const Page = () => {
   return (
     <>
-      <Typography variant="h6">Welcome</Typography>
+      <PageContainer>
+        <Typography variant="h6">Welcome</Typography>
+      </PageContainer>
     </>
   );
 };
