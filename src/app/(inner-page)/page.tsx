@@ -12,7 +12,7 @@ import TrustPilot from "@/components/pages/home-four/TrustPilot";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BrainBooster",
+  title: "Home | BrainBooster",
   description: "Educational quiz platform",
 };
 const HomeFour = () => {

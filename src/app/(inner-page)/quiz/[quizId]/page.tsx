@@ -2,8 +2,8 @@ import QuizDetailsContent from "@/components/pages/quiz-details/QuizDetailsConte
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quiz",
-  description: "Quiz",
+  title: "Quiz | BrainBooster",
+  description: "Quiz Details",
 };
 
 const QuizDetails = () => {

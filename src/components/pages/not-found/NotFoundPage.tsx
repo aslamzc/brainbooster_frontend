@@ -1,5 +1,4 @@
 import image from "@/../public/images/error.png";
-import ButtonPrimary from "@/components/button/ButtonPrimary";
 import Image from "next/image";
 const NotFoundPage = () => {
   return (
@@ -10,13 +9,6 @@ const NotFoundPage = () => {
           <h4 className="d4 padding-t-60 text-center font-semibold">
             Oops! Page Not Found
           </h4>
-          <p className="lText pt-6 text-center text-neutral-30">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div className="padding-t-40">
-            <ButtonPrimary button buttonText="Back to Home" />
-          </div>
         </div>
       </div>
     </div>

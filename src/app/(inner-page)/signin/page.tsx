@@ -2,8 +2,8 @@ import SignInForm from "@/components/pages/signin/SignInForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign In - Education & Online Course With Community",
-  description: "Education & Online Course With Community",
+  title: "Sign In | BrainBooster",
+  description: "",
 };
 
 const SignIn = () => {
