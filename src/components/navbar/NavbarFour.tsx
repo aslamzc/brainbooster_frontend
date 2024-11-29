@@ -230,25 +230,6 @@ const NavbarFour = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 py-2 4xl:gap-6">
-                  <div
-                    className={`theme-transition-4 flex items-center justify-between rounded-60px border-neutral-40 md:bg-white ${expanseSearch
-                      ? "py-2 pe-2 ps-5  max-md:w-[100px] md:w-[300px] md:border lg:ps-8 xl:w-[350px] xxl:w-[350px] 4xl:w-[400px]"
-                      : "w-10 "
-                      }`}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className={`me-3  w-full placeholder:text-neutral-300 focus:outline-none ${expanseSearch ? "block" : "hidden"
-                        }`}
-                    />
-                    <HeaderIcon
-                      actionFunction={handleExpanseSearch}
-                      icon={<IconSearch size={20} />}
-                      bg="bg-neutral-20 border border-neutral-30"
-                    />
-
-                  </div>
                   <ButtonOutline button buttonText="Sign In" link="/signin" />
                   <ButtonPrimary button buttonText="Sign Up" link="/signup" />
                 </div>
@@ -278,15 +259,15 @@ const NavbarFour = () => {
                 </div>
 
                 <div className="gap-40px flex items-center">
-                <Link href="/">
-                  <Image
-                    src={logo}
-                    width={184}
-                    height={38}
-                    alt="Home page one logo"
-                    className="max-sm:w-[150px]"
-                  />
-                </Link>
+                  <Link href="/">
+                    <Image
+                      src={logo}
+                      width={184}
+                      height={38}
+                      alt="Home page one logo"
+                      className="max-sm:w-[150px]"
+                    />
+                  </Link>
                   <div className="padding-s-32 padding-e-32  hidden items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 lg:flex">
                     <IconCategory />
                     <DropdownNavbar options={category} />
