@@ -227,8 +227,8 @@ const NavbarFour = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 py-2 4xl:gap-6">
-                  <ButtonOutline button buttonText="Sign In" link="/signin" />
-                  <ButtonPrimary button buttonText="Sign Up" link="/signup" />
+                  <ButtonOutline button buttonText={t("text_23")} link="/signin" />
+                  <ButtonPrimary button buttonText={t("text_21")} link="/signup" />
                 </div>
               </div>
               {/* desktop menu end */}
