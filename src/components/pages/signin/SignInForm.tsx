@@ -8,11 +8,13 @@ import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySma
 import { form, loginFormType } from "./LoginSchema";
 import axios from "@/utils/axios";
 import Cookies from "js-cookie";
+import { useTranslation } from 'react-i18next';
 
 type ResponseType = {
   accessToken: string
 }
 const SignInForm = () => {
+  const { t } = useTranslation();
 
   const [passwordShow, setPasswordShow] = useState(false);
 
@@ -42,18 +44,15 @@ const SignInForm = () => {
       <div className="container grid items-center justify-between gap-20 max-xxl:grid-flow-row max-xxl:justify-center xxl:grid-cols-2 xxl:gap-40">
         <div className="mx-auto w-full max-xl:order-2">
           <div className="padding-all-32 rounded-16px border-neutral-30 bg-neutral-20">
-            <h3 className="h3 font-semibold">Welcome Back!</h3>
+            <h3 className="h3 font-semibold">{t("text_15")}</h3>
             <p className="pt-6 text-mText text-neutral-500">
-              Sign in to your account and join us
+              {t("text_16")}
             </p>
             <form className="padding-t-40" onSubmit={handleSubmit(onSubmit)}>
               <div className=" flex flex-col justify-between gap-6">
                 <div className="flex flex-col gap-4">
-                  <label
-                    className="lText block font-medium text-neutral-500"
-                    htmlFor="email"
-                  >
-                    Enter Your Email ID
+                  <label className="lText block font-medium text-neutral-500" htmlFor="email">
+                    {t("text_17")}
                   </label>
                   <input
                     className="w-full rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none"
@@ -64,18 +63,15 @@ const SignInForm = () => {
                   <p>{errors.email?.message}</p>
                 </div>{" "}
                 <div className="flex flex-col gap-4">
-                  <label
-                    className="lText block font-medium text-neutral-500"
-                    htmlFor="name"
-                  >
-                    Enter Your Password
+                  <label className="lText block font-medium text-neutral-500" htmlFor="name">
+                    {t("text_18")}
                   </label>
                   <div className="flex w-full items-center justify-between rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none">
                     <input
                       className="w-full  bg-white focus:outline-none"
                       id="password"
                       type={passwordShow ? "text" : "password"}
-                      placeholder="Enter Your Password..."
+                      placeholder={t("text_19")}
                       {...register("password")}
                     />
                     <span onClick={() => setPasswordShow(!passwordShow)}>
@@ -89,22 +85,19 @@ const SignInForm = () => {
                   <p>{errors.password?.message}</p>
 
                 </div>
-                <Link
-                  href="/forget-password"
-                  className=" text-right text-sText"
-                >
-                  Forget password
+                <Link href="/forget-password" className=" text-right text-sText"                >
+                  {t("text_22")}
                 </Link>
               </div>
 
               <p className="pt-4 text-mText text-neutral-500">
-                Don’t have an account?{" "}
+                {t("text_20")}
                 <Link href="/signup" className="font-semibold text-neutral-700">
-                  Signup
+                  {t("text_21")}
                 </Link>
               </p>
               <div className="padding-t-40">
-                <ButtonPrimarySmall buttonText="Sign In" />
+                <ButtonPrimarySmall buttonText={t("text_23")} />
               </div>
             </form>
           </div>
