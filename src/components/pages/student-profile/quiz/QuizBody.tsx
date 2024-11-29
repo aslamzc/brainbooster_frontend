@@ -11,6 +11,7 @@ import DropdownQuestion from "@/components/dropdown/DropdownQuestion";
 import DropdownAnswer from "@/components/dropdown/DropdownAnswer";
 import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
+import { t } from "i18next";
 
 const language = [
   { label: "English", language: "en" },
@@ -148,12 +149,12 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
           <H3>{titleTr}</H3>
           <div className="flex flex-col gap-4 sm:flex-row">
             <div className="flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 px-8">
-              <TextM>Question</TextM>
+              <TextM>{t('text_9')}</TextM>
               <IconWorld />
               <DropdownQuestion options={language} setQuestionLanguage={setQuestionLanguage} />
             </div>
             <div className="flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 px-8">
-              <TextM>Answer</TextM>
+              <TextM>{t('text_10')}</TextM>
               <IconWorld />
               <DropdownAnswer options={language} setAnswerLanguage={setAnswerLanguage} />
             </div>

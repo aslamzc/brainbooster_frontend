@@ -12,6 +12,8 @@ const resources = {
       text_6: "See All Quizzes",
       text_7: "Quizzes",
       text_8: "Search",
+      text_9: "Question",
+      text_10: "Answer",
     },
   },
   si: {
@@ -24,6 +26,8 @@ const resources = {
       text_6: "සියලුම ප්‍රශ්නාවලිය බලන්න",
       text_7: "ප්‍රශ්නාවලිය",
       text_8: "සොයන්න",
+      text_9: "ප්රශ්නය",
+      text_10: "උත්තර දෙන්න",
     },
   },
   ta: {
@@ -36,6 +40,8 @@ const resources = {
       text_6: "அனைத்து வினாடி வினாக்களையும் பார்க்கவும்",
       text_7: "வினாடி வினாக்கள்",
       text_8: "தேடு",
+      text_9: "கேள்வி",
+      text_10: "பதில்",
     },
   },
 };
