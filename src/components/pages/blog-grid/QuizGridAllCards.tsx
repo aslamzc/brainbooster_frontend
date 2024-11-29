@@ -5,6 +5,8 @@ import axios from "@/utils/axios";
 import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
 import Loading from "@/app/loading";
+import CourseOneBannerWithLabel from "../course-one/CourseOneBannerWithLabel";
+import { useTranslation } from 'react-i18next';
 
 //types
 type QuizeType = {
@@ -18,6 +20,7 @@ type QuizeType = {
 const QuizGridAllCards = () => {
 
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   const [quizzes, setQuizzes] = useState<Array<QuizeType>>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -56,18 +59,21 @@ const QuizGridAllCards = () => {
   }
 
   return (
-    <section className="padding-t-60">
-      <div className="container">
-        {loading && <Loading />}
-        {!loading &&
-          <div className="grid items-center justify-center gap-12 md:grid-cols-2 xl:grid-cols-3">
-            {quizzes?.map((quiz) => (
-              <CardQuizGrid key={quiz.id} {...quiz} />
-            ))}
-          </div>
-        }
-      </div>
-    </section>
+    <>
+      <CourseOneBannerWithLabel title={t('text_7')} />
+      <section className="padding-t-60">
+        <div className="container">
+          {loading && <Loading />}
+          {!loading &&
+            <div className="grid items-center justify-center gap-12 md:grid-cols-2 xl:grid-cols-3">
+              {quizzes?.map((quiz) => (
+                <CardQuizGrid key={quiz.id} {...quiz} />
+              ))}
+            </div>
+          }
+        </div>
+      </section>
+    </>
   );
 };
 

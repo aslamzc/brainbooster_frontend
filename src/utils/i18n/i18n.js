@@ -10,6 +10,8 @@ const resources = {
       text_4: "Succeed",
       text_5: "Welcome to BrainBooster App! Ready to test your knowledge and have some fun?",
       text_6: "See All Quizzes",
+      text_7: "Quizzes",
+      text_8: "Search",
     },
   },
   si: {
@@ -20,6 +22,8 @@ const resources = {
       text_4: "සාර්ථක වෙන්න",
       text_5: "BrainBooster යෙදුම වෙත සාදරයෙන් පිළිගනිමු! ඔබේ දැනුම පරීක්ෂා කර විනෝද වීමට සූදානම්ද?",
       text_6: "සියලුම ප්‍රශ්නාවලිය බලන්න",
+      text_7: "ප්‍රශ්නාවලිය",
+      text_8: "සොයන්න",
     },
   },
   ta: {
@@ -30,6 +34,8 @@ const resources = {
       text_4: "வெற்றி பெறுங்கள்",
       text_5: "BrainBooster பயன்பாட்டிற்கு வரவேற்கிறோம்! உங்கள் அறிவை சோதித்து வேடிக்கை பார்க்க தயாரா?",
       text_6: "அனைத்து வினாடி வினாக்களையும் பார்க்கவும்",
+      text_7: "வினாடி வினாக்கள்",
+      text_8: "தேடு",
     },
   },
 };

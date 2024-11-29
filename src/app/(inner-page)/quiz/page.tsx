@@ -1,5 +1,4 @@
 import QuizGridAllCards from "@/components/pages/blog-grid/QuizGridAllCards";
-import CourseOneBannerWithLabel from "@/components/pages/course-one/CourseOneBannerWithLabel";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
 const QuizGrid = () => {
   return (
     <>
-      <CourseOneBannerWithLabel title="Quizzes" />
       <QuizGridAllCards />
     </>
   );
