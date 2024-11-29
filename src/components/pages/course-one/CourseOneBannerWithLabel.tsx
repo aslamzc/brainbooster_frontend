@@ -1,5 +1,4 @@
 import SearchBarPrimary from "@/components/sharedComponents/SearchbarPrimary";
-import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   title: string;

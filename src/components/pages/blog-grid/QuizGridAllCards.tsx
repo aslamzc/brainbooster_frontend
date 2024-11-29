@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import CardQuizGrid from "@/components/Card/CardQuizGrid";
 import axios from "@/utils/axios";
