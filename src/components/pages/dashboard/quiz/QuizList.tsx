@@ -33,14 +33,6 @@ const QuizList = () => {
                 </Button>
             )
         }
-        // {
-        //     field: 'fullName',
-        //     headerName: 'Full name',
-        //     description: 'This column has a value getter and is not sortable.',
-        //     sortable: false,
-
-        //     valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-        // },
     ];
     useEffect(() => {
         getInitialData();
