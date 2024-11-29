@@ -14,8 +14,8 @@ const OnlineCourses = () => {
         {/* section heading */}
         <SectionHeading
           title={t('text_1')}
-          description="Welcome to Welcome to BrainBooster App! Ready to test your knowledge and have some fun?"
-          link="/courses/courses-one"
+          description="Welcome to BrainBooster App! Ready to test your knowledge and have some fun?"
+          link="/quiz"
           buttonText="See All Quizzes"
         />
         <div className="padding-t-60 grid grid-cols-1 items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
