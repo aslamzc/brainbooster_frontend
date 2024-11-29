@@ -160,7 +160,6 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
           </div>
         </div>
       </div>
-      {/* quiz question */}
       <BorderHorizontalN40 />
       {!showAnswer ? (
         <>
