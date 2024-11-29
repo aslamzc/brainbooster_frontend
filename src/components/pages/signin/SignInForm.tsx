@@ -95,7 +95,7 @@ const SignInForm = () => {
                     <p className="pt-2 text-sm text-red-500">{errors?.root.server.message}</p>
                   )}
                 </div>
-                <Link href="/forget-password" className=" text-right text-sText"                >
+                <Link href="http://localhost:8000/admin/password-reset/request" className=" text-right text-sText"                >
                   {t("text_22")}
                 </Link>
               </div>
