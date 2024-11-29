@@ -57,7 +57,7 @@ const SignInForm = () => {
                   <input
                     className="w-full rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none"
                     id="email"
-                    placeholder="Your email ID here"
+                    placeholder={t("text_27")}
                     {...register("email")}
                   />
                   <p>{errors.email?.message}</p>
