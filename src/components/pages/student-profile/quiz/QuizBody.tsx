@@ -146,13 +146,13 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
       <div className="flex items-center gap-6 max-lg:flex-col xl:gap-10">
         <div className="flex flex-col gap-4">
           <H3>{titleTr}</H3>
-          <div className="flex flex-row gap-4">
-            <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 px-8">
               <TextM>Question</TextM>
               <IconWorld />
               <DropdownQuestion options={language} setQuestionLanguage={setQuestionLanguage} />
             </div>
-            <div className="padding-s-32 padding-e-32 flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4">
+            <div className="flex items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 px-8">
               <TextM>Answer</TextM>
               <IconWorld />
               <DropdownAnswer options={language} setAnswerLanguage={setAnswerLanguage} />
