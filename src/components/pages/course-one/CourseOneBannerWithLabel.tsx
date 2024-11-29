@@ -23,7 +23,7 @@ const CourseOneBannerWithLabel = ({
         <div className="mt-10">
           <SearchBarPrimary />
         </div>
-        <div className="m:gap-4 mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-8">
+        {/* <div className="m:gap-4 mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-8">
           {buttonText?.map((text) => (
             <button
               key={uuidv4()}
@@ -33,7 +33,7 @@ const CourseOneBannerWithLabel = ({
               {text}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
