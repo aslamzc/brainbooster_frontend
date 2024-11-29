@@ -2,17 +2,17 @@ import { v4 as uuidv4 } from "uuid";
 export const navbarData = [
   {
     id: uuidv4(),
-    menuTitle: "Quiz",
+    menuTitle: "text_33",
     path: "/quiz",
   },
   {
     id: uuidv4(),
-    menuTitle: "Dashboard",
+    menuTitle: "text_34",
     path: "/dashboard",
   },
   {
     id: uuidv4(),
-    menuTitle: "About Us",
+    menuTitle: "text_35",
     path: "/about-us",
   },
 ];

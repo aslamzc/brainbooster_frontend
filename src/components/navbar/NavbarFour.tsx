@@ -1,14 +1,10 @@
 "use client";
 import logo from "@/../public/images/homeOne/Logo.png";
 import {
-  IconArrowsExchange,
   IconCategory,
   IconChevronDown,
-  IconDots,
   IconGridDots,
   IconSearch,
-  IconShoppingCart,
-  IconUserCircle,
   IconWorld,
   IconX,
 } from "@tabler/icons-react";
@@ -20,9 +16,9 @@ import AnimateHeight from "react-animate-height";
 import { navbarData } from "../../../public/data/navbarData";
 import HeaderIcon from "../HeaderIcon";
 import DropdownNavbar from "../dropdown/DropdownNavbar";
-import IconDotVertical from "../icons/IconDotVertical";
 import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonOutline from "../button/ButtonOutline";
+import { useTranslation } from 'react-i18next';
 
 const category = [
   { label: "English", language: "en" },
@@ -42,6 +38,7 @@ const NavbarFour = () => {
   const [dropDown, setDropDown] = useState("");
   const [expanseSearch, setExpanseSearch] = useState(false);
   const [threeDotsMenu, setThreeDotsMenu] = useState(false);
+  const { t } = useTranslation();
 
   const navBarTop = () => {
     if (window !== undefined) {
@@ -118,7 +115,7 @@ const NavbarFour = () => {
                                 }`}
                             >
                               <p className="flex">
-                                <span>{menuTitle}</span> <IconChevronDown />
+                                <span>{t(menuTitle)}</span> <IconChevronDown />
                               </p>
                               <ul
                                 className="pointer-events-none absolute right-0 z-10 mt-2 min-w-max origin-top-right translate-y-[50px] scale-75 transform space-y-2 rounded-sm bg-bgColorTwo px-5 py-2 text-white opacity-0 shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-300 focus:outline-none group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100
@@ -148,7 +145,7 @@ const NavbarFour = () => {
                               key={id}
                               className="transition-all duration-150 ease-in-out hover:text-secondaryColorTwo"
                             >
-                              <Link href={`${path}`}>{menuTitle}</Link>
+                              <Link href={`${path}`}>{t(menuTitle)}</Link>
                             </li>
                           );
                         })}
@@ -185,7 +182,7 @@ const NavbarFour = () => {
                                   onMouseLeave={() => handleDropDown("")}
                                 >
                                   <p className="flex justify-between">
-                                    <span>{menuTitle}</span> <IconChevronDown />
+                                    <span>{t(menuTitle)}</span> <IconChevronDown />
                                   </p>
                                   <AnimateHeight
                                     duration={500}
@@ -220,7 +217,7 @@ const NavbarFour = () => {
                                   key={id}
                                   className="transition-all duration-150 ease-in-out hover:text-secondaryColorTwo"
                                 >
-                                  <Link href={`${path}`}>{menuTitle}</Link>
+                                  <Link href={`${path}`}>{t(menuTitle)}</Link>
                                 </li>
                               );
                             })}
@@ -294,7 +291,7 @@ const NavbarFour = () => {
                             onClick={() => handleDropDown(id)}
                           >
                             <p className="flex justify-between">
-                              <span>{menuTitle}</span> <IconChevronDown />
+                              <span>{t(menuTitle)}</span> <IconChevronDown />
                             </p>
                             <AnimateHeight
                               duration={500}
@@ -334,7 +331,7 @@ const NavbarFour = () => {
                               href={`${path}`}
                               onClick={() => setMenuOpen(!menuOpen)}
                             >
-                              {menuTitle}
+                              {t(menuTitle)}
                             </Link>
                           </li>
                         );

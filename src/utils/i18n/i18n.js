@@ -36,6 +36,9 @@ const resources = {
       text_30: "Enter A Password",
       text_31: "Enter Password Again",
       text_32: "Jone",
+      text_33: "Quiz",
+      text_34: "Dashboard",
+      text_35: "About Us",
     },
   },
   si: {
@@ -72,6 +75,9 @@ const resources = {
       text_30: "මුරපදයක් ඇතුළත් කරන්න",
       text_31: "මුරපදය නැවත ඇතුල් කරන්න",
       text_32: "ජෝන්",
+      text_33: "ප්‍රශ්නාවලිය",
+      text_34: "උපකරණ පුවරුව",
+      text_35: "අපි ගැන",
     },
   },
   ta: {
@@ -108,6 +114,9 @@ const resources = {
       text_30: "கடவுச்சொல்லை உள்ளிடவும்",
       text_31: "கடவுச்சொல்லை மீண்டும் உள்ளிடவும்",
       text_32: "ஜோன்",
+      text_33: "வினாடி வினா",
+      text_34: "டாஷ்போர்டு",
+      text_35: "எங்களைப் பற்றி",
     },
   },
 };
