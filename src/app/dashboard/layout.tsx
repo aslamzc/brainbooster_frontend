@@ -7,12 +7,16 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
 import Toolbar from "./Toolbar";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NAVIGATION: Navigation = [
   {
     segment: 'dashboard',
     title: 'Dashboard',
     icon: <DashboardIcon />,
+  },
+  {
+    kind: 'divider',
   },
   {
     segment: 'dashboard/quiz',
@@ -23,6 +27,14 @@ const NAVIGATION: Navigation = [
     segment: 'dashboard/quiz/create',
     title: 'Create Quiz',
     icon: <AddIcon />,
+  },
+  {
+    kind: 'divider',
+  },
+  {
+    segment: 'dashboard/profile',
+    title: 'Profile',
+    icon: <AccountCircleIcon />,
   },
   {
     kind: 'divider',
