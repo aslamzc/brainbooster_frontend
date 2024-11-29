@@ -177,7 +177,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
             ))}
           </div>
           <ButtonPrimarySmall
-            buttonText="View Result"
+            buttonText={t('text_12')}
             onClick={(e) => handleShowAnswer(e)}
           />
         </>
@@ -194,17 +194,17 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
                   {item.isCorrect
                     ?
                     <div className="flex flex-row">
-                      <p>Answer : {item.answer}</p>
+                      <p>{t("text_10") + " : " + item.answer}</p>
                       <IconCheck size={32} className="text-secondaryColorTwo" />
                     </div>
                     :
                     <>
                       <div className="flex flex-row">
-                        <p>Answer : {item.answer}</p>
+                        <p>{t("text_10") + " : " + item.answer}</p>
                         <IconX size={32} className="text-[#FF0505]" />
                       </div>
                       <div className="flex flex-row">
-                        <p>Correct Answer : {item.correctAnswer}</p>
+                        <p>{t("text_14") + " : " + item.correctAnswer}</p>
                         <IconCheck size={32} className="text-secondaryColorTwo" />
                       </div>
                     </>
@@ -214,7 +214,7 @@ const QuizBody = ({ id, title, description, createdAt, userName, questions }: Qu
             }
           </div>
           <ButtonPrimarySmall
-            buttonText="Back To Quiz"
+            buttonText={t('text_13')}
             onClick={(e) => handleShowAnswer(e)}
           />
         </>

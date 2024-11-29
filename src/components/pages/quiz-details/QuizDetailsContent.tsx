@@ -1,16 +1,12 @@
 "use client";
-import ButtonUnderLine from "@/components/button/ButtonUnderLine";
-import BorderHorizontalN40 from "@/components/customBorder/BorderHorizontalN40";
-import H4 from "@/components/sharedComponents/H4";
-import SidebarSearchBox from "@/components/sharedComponents/SidebarSearchBox";
-import { moreRelatedBlogData } from "../../../../public/data/moreRelatedBlogData";
 import BlogInfo from "../blog-classic/BlogInfo";
-import MoreRelatedBlogs from "./MoreRelatedBlogs";
 import QuizBody from "@/components/pages/student-profile/quiz/QuizBody";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "@/utils/axios";
 import Loading from "@/app/loading";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
+import translateText from "@/utils/googleTranslate";
 
 //types
 type QuizDetailsType = {
@@ -39,14 +35,24 @@ const QuizDetailsContent = () => {
   const [quizDetails, setQuizDetails] = useState<QuizDetailsType>();
   const { quizId } = useParams();
   const { push } = useRouter();
+  const { language } = useLanguage();
 
   useEffect(() => {
     getInitialData();
   }, []);
 
+  useEffect(() => {
+    getInitialData();
+  }, [language]);
+
   const getInitialData = async () => {
     try {
       const { data } = await axios.get(`/quiz/${quizId}`);
+      if (data?.userName && data?.createdAt) {
+        const trArr = await translateText([data?.userName, data?.createdAt], language);
+        data.userName = trArr[0].translatedText;
+        data.createdAt = trArr[1].translatedText;
+      }
       setQuizDetails(data);
     } catch (error) {
       console.error(error);
