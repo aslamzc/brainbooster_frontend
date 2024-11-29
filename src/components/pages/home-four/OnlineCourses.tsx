@@ -11,12 +11,11 @@ const OnlineCourses = () => {
   return (
     <div className="section-gap-top section-gap-bottom overflow-hidden">
       <div className="container">
-        {/* section heading */}
         <SectionHeading
           title={t('text_1')}
-          description="Welcome to BrainBooster App! Ready to test your knowledge and have some fun?"
+          description={t('text_5')}
           link="/quiz"
-          buttonText="See All Quizzes"
+          buttonText={t('text_6')}
         />
         <div className="padding-t-60 grid grid-cols-1 items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {homeFourOnlineCourseCardData.map(({ id, ...props }, index) => (
