@@ -249,24 +249,6 @@ const NavbarFour = () => {
                     />
 
                   </div>
-
-                  {/* <HeaderIcon
-                    icon={<IconWorld size={20} />}
-                    bg="bg-neutral-20 border border-neutral-30"
-                  /> */}
-                  {/* <HeaderIcon
-                    icon={<IconShoppingCart size={20} />}
-                    number={1}
-                    bg="bg-neutral-20 border border-neutral-30"
-                  /> */}
-                  {/* <HeaderIcon
-                    icon={<IconArrowsExchange size={20} />}
-                    bg="bg-neutral-20 border border-neutral-30"
-                  /> */}
-                  {/* <HeaderIcon
-                    icon={<IconUserCircle size={20} />}
-                    bg="bg-neutral-20 border border-neutral-30"
-                  /> */}
                   <ButtonOutline button buttonText="Sign In" link="/signin" />
                   <ButtonPrimary button buttonText="Sign Up" link="/signup" />
                 </div>
@@ -296,6 +278,7 @@ const NavbarFour = () => {
                 </div>
 
                 <div className="gap-40px flex items-center">
+                <Link href="/">
                   <Image
                     src={logo}
                     width={184}
@@ -303,6 +286,7 @@ const NavbarFour = () => {
                     alt="Home page one logo"
                     className="max-sm:w-[150px]"
                   />
+                </Link>
                   <div className="padding-s-32 padding-e-32  hidden items-center justify-center gap-2 rounded-60px border-neutral-20 bg-neutral-20 py-4 lg:flex">
                     <IconCategory />
                     <DropdownNavbar options={category} />
@@ -397,37 +381,6 @@ const NavbarFour = () => {
                         icon={<IconSearch size={20} />}
                         bg="bg-neutral-20 border border-neutral-30"
                       />
-                    </div>
-
-                    <div
-                      className={`top-10 z-[2000] flex translate-y-0 items-center gap-2 transition-all duration-300 max-xxl:absolute max-xxl:z-20 max-xxl:flex-col max-xxl:justify-center max-xxl:space-y-2 max-xxl:rounded-sm max-xxl:bg-neutral-10 max-xxl:px-5 max-xxl:py-6 max-xxl:shadow-md max-sm:right-0 max-sm:w-20 sm:right-[-10px] sm:max-xxl:w-[180px] md:top-11 lg:justify-between xxl:gap-6 ${buttonModalOpen
-                        ? "max-xxl:translate-y-4 max-xxl:opacity-100"
-                        : "max-xxl:opacity-0"
-                        }`}
-                    >
-                      <HeaderIcon
-                        icon={<IconWorld size={20} />}
-                        bg="bg-neutral-20 border border-neutral-30"
-                      />
-                      <HeaderIcon
-                        icon={<IconShoppingCart size={20} />}
-                        number={1}
-                        bg="bg-neutral-20 border border-neutral-30"
-                      />
-                      <HeaderIcon
-                        icon={<IconArrowsExchange size={20} />}
-                        bg="bg-neutral-20 border border-neutral-30"
-                      />
-                      <HeaderIcon
-                        icon={<IconUserCircle size={20} />}
-                        bg="bg-neutral-20 border border-neutral-30"
-                      />
-                    </div>
-                    <div>
-                      <IconDotVertical
-                        buttonModalAction={buttonModalAction}
-                        hiddenDeviceFrom="xxl"
-                      />{" "}
                     </div>
                   </div>
                 </div>
