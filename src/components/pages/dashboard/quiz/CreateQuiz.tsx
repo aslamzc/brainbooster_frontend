@@ -19,6 +19,7 @@ const CreateQuiz = () => {
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
     const [quizLoading, setQuizLoading] = useState(false);
+    const [btnStatus, setBtnStatus] = useState(true);
     const [paragraphError, setParagraphError] = useState('');
     const [open, setOpen] = useState(false);
     const [paragraph, setParagraph] = useState('');
@@ -29,6 +30,7 @@ const CreateQuiz = () => {
 
     const handleClose = () => {
         setOpen(false);
+        setBtnStatus(true);
     };
 
     const generateQuiz = async () => {
@@ -49,6 +51,7 @@ const CreateQuiz = () => {
             console.error(error);
             setParagraphError(error?.message ?? '');
             setQuizLoading(false);
+            setBtnStatus(false);
         }
     }
 
@@ -345,10 +348,12 @@ const CreateQuiz = () => {
                             value={paragraph}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                if (value.length < 100) {
-                                    setParagraphError('At least 100 characters required');
+                                if (value.length < 50) {
+                                    setParagraphError('At least 50 characters required');
+                                    setBtnStatus(true);
                                 } else {
                                     setParagraphError('');
+                                    setBtnStatus(false);
                                 }
                                 setParagraph(value);
                             }}
@@ -358,7 +363,7 @@ const CreateQuiz = () => {
                         />
                         <LoadingButton
                             loading={quizLoading}
-                            disabled={!!paragraphError}
+                            disabled={btnStatus}
                             onClick={generateQuiz}
                             variant="contained"
                             color='primary'
