@@ -18,7 +18,7 @@ const SignInForm = () => {
 
   const [passwordShow, setPasswordShow] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = form();
+  const { register, handleSubmit, formState: { errors }, setError } = form();
 
   const onSubmit = async (data: loginFormType) => {
     try {
@@ -34,8 +34,9 @@ const SignInForm = () => {
         path: "/",
       });
       window.location.href = "/dashboard";
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.log(error);
+      setError("root.server", { type: "custom", message: error.error });
     }
   }
 
@@ -55,18 +56,23 @@ const SignInForm = () => {
                     {t("text_17")}
                   </label>
                   <input
-                    className="w-full rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none"
+                    className={`w-full rounded-32px border ${errors.email?.message ? "border-red-500" : "border-neutral-30"} bg-white px-6 py-3 focus:outline-none`}
                     id="email"
                     placeholder={t("text_27")}
                     {...register("email")}
                   />
-                  <p>{errors.email?.message}</p>
+                  {errors.email?.message && (
+                    <p className="pt-2 text-sm text-red-500">{errors.email.message}</p>
+                  )}
                 </div>{" "}
                 <div className="flex flex-col gap-4">
                   <label className="lText block font-medium text-neutral-500" htmlFor="name">
                     {t("text_18")}
                   </label>
-                  <div className="flex w-full items-center justify-between rounded-32px border border-neutral-30 bg-white px-6 py-3 focus:outline-none">
+                  <div
+                    className={`flex w-full items-center justify-between rounded-32px border ${errors.password?.message ? "border-red-500" : "border-neutral-30"
+                      } bg-white px-6 py-3 focus:outline-none`}
+                  >
                     <input
                       className="w-full  bg-white focus:outline-none"
                       id="password"
@@ -82,8 +88,12 @@ const SignInForm = () => {
                       )}
                     </span>
                   </div>
-                  <p>{errors.password?.message}</p>
-
+                  {errors.password?.message && (
+                    <p className="pt-2 text-sm text-red-500">{errors.password.message}</p>
+                  )}
+                  {errors?.root?.server?.message && (
+                    <p className="pt-2 text-sm text-red-500">{errors?.root.server.message}</p>
+                  )}
                 </div>
                 <Link href="/forget-password" className=" text-right text-sText"                >
                   {t("text_22")}

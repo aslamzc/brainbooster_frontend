@@ -10,8 +10,8 @@ const defaultValues = {
 
 //validation
 const schema = Yup.object({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required')
+    email: Yup.string().email().max(255).required().label('Email'),
+    password: Yup.string().min(6).required().label('Password')
 });
 
 //schema
