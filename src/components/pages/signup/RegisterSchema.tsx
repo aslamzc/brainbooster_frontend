@@ -12,7 +12,7 @@ const defaultValues = {
 
 //validation
 const schema = Yup.object({
-    name: Yup.string().max(255).required().label('Name'),
+    name: Yup.string().min(3).max(255).required().label('Name'),
     email: Yup.string().email().max(255).required().label('Email'),
     password: Yup.string().min(8).max(255).required().label('Password'),
     password_confirmation: Yup.string().oneOf([Yup.ref('password')]).min(8).max(255).required().label('Confirm Password')

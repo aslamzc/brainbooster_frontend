@@ -2,30 +2,70 @@
 import image from "@/../public/images/signup.png";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySmall";
 import { useTranslation } from 'react-i18next';
 import { form, RegisterFormType } from "./RegisterSchema";
 import axios from "@/utils/axios";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
+import translateText from "@/utils/googleTranslate";
 
 const SignUpForm = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const [conformPasswordShow, setConformPasswordShow] = useState(false);
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const { push } = useRouter();
   const { register, handleSubmit, formState: { errors }, setError } = form();
+
+  useEffect(() => {
+    updateValidationMessages();
+  }, [language]);
+
+  const updateValidationMessages = async () => {
+    if (errors) {
+      if (errors?.name?.message) {
+        const name = await translateText(errors.name.message, language);
+        setError("name", { type: "server", message: name[0].translatedText });
+      }
+      if (errors?.email?.message) {
+        const email = await translateText(errors.email.message, language);
+        setError("email", { type: "server", message: email[0].translatedText });
+      }
+      if (errors?.password?.message) {
+        const password = await translateText(errors.password.message, language);
+        setError("password", { type: "server", message: password[0].translatedText });
+      }
+      if (errors?.password_confirmation?.message) {
+        const password_confirmation = await translateText(errors.password_confirmation.message, language);
+        setError("password_confirmation", { type: "server", message: password_confirmation[0].translatedText });
+      }
+    }
+  }
 
   const onSubmit = async (data: RegisterFormType) => {
     try {
       await axios.post('/register', data);
       push('/signin');
     } catch (error: any) {
-      console.log(error);
       if (error?.errors) {
-        Object.keys(error.errors).map((key: any) => {
-          setError(key, { type: "server", message: error.errors[key] });
-        });
+        if (error?.errors?.name) {
+          const name = await translateText(error.errors.name, language);
+          setError("name", { type: "server", message: name[0].translatedText });
+        }
+        if (error?.errors?.email) {
+          const email = await translateText(error.errors.email, language);
+          setError("email", { type: "server", message: email[0].translatedText });
+        }
+        if (error?.errors?.password) {
+          const password = await translateText(error.errors.password, language);
+          setError("password", { type: "server", message: password[0].translatedText });
+        }
+        if (error?.errors?.password_confirmation) {
+          const password_confirmation = await translateText(error.errors.password_confirmation, language);
+          setError("password_confirmation", { type: "server", message: password_confirmation[0].translatedText });
+        }
       }
     }
   }

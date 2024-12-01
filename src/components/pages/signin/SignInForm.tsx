@@ -3,22 +3,36 @@ import image from "@/../public/images/signup.png";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonPrimarySmall from "../student-profile/edit-profile/ButtonPrimarySmall";
 import { form, loginFormType } from "./LoginSchema";
 import axios from "@/utils/axios";
 import Cookies from "js-cookie";
 import { useTranslation } from 'react-i18next';
+import translateText from "@/utils/googleTranslate";
+import { useLanguage } from "@/utils/i18n/LanguageContext";
 
 type ResponseType = {
   accessToken: string
 }
 const SignInForm = () => {
   const { t } = useTranslation();
+  const { language } = useLanguage();
 
   const [passwordShow, setPasswordShow] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, setError } = form();
+
+  useEffect(() => {
+    updateValidationMessages();
+  }, [language]);
+
+  const updateValidationMessages = async () => {
+    if (errors?.root?.server.message) {
+      const message = await translateText(errors.root.server.message, language);
+      setError("root.server", { type: "custom", message: message[0].translatedText });
+    }
+  }
 
   const onSubmit = async (data: loginFormType) => {
     try {
@@ -35,8 +49,8 @@ const SignInForm = () => {
       });
       window.location.href = "/dashboard";
     } catch (error: any) {
-      console.log(error);
-      setError("root.server", { type: "custom", message: error.error });
+      const message = await translateText(error.error, language);
+      setError("root.server", { type: "custom", message: message[0].translatedText });
     }
   }
 
