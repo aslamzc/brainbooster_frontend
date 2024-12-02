@@ -4,7 +4,7 @@ import CardQuizGrid from "@/components/Card/CardQuizGrid";
 import axios from "@/utils/axios";
 import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
-import Loading from "@/app/loading";
+import Loading from "@/app/loading2";
 import CourseOneBannerWithLabel from "../course-one/CourseOneBannerWithLabel";
 import { useTranslation } from 'react-i18next';
 
