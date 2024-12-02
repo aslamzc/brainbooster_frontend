@@ -76,7 +76,7 @@ const SignInForm = () => {
                     {...register("email")}
                   />
                   {errors.email?.message && (
-                    <p className="pt-2 text-sm text-red-500">{errors.email.message}</p>
+                    <p className="pt-2 text-sm text-red-500">{t(errors.email.message)}</p>
                   )}
                 </div>{" "}
                 <div className="flex flex-col gap-4">
@@ -103,7 +103,7 @@ const SignInForm = () => {
                     </span>
                   </div>
                   {errors.password?.message && (
-                    <p className="pt-2 text-sm text-red-500">{errors.password.message}</p>
+                    <p className="pt-2 text-sm text-red-500">{t(errors.password.message)}</p>
                   )}
                   {errors?.root?.server?.message && (
                     <p className="pt-2 text-sm text-red-500">{errors?.root.server.message}</p>
