@@ -40,8 +40,9 @@ const resources = {
       text_34: "Dashboard",
       text_35: "About Us",
       text_36: "Email is a required field",
-      text_37: "Password must be at least 6 characters",
+      text_37: "Password must be at least 8 characters",
       text_38: "Email must be a valid email",
+      text_39: "Name must be at least 3 characters",
     },
   },
   si: {
@@ -82,8 +83,9 @@ const resources = {
       text_34: "උපකරණ පුවරුව",
       text_35: "අපි ගැන",
       text_36: "විද්‍යුත් තැපෑල අවශ්‍ය ක්ෂේත්‍රයකි",
-      text_37: "මුරපදය අවම වශයෙන් අක්ෂර 6 ක් විය යුතුය",
+      text_37: "මුරපදය අවම වශයෙන් අක්ෂර 8 ක් විය යුතුය",
       text_38: "විද්‍යුත් තැපෑල වලංගු විද්‍යුත් තැපෑලක් විය යුතුය",
+      text_39: "නම අවම වශයෙන් අක්ෂර 3 ක් විය යුතුය",
     },
   },
   ta: {
@@ -124,8 +126,9 @@ const resources = {
       text_34: "டாஷ்போர்டு",
       text_35: "எங்களைப் பற்றி",
       text_36: "மின்னஞ்சல் ஒரு தேவையான புலம்",
-      text_37: "கடவுச்சொல் குறைந்தது 6 எழுத்துகளாக இருக்க வேண்டும்",
+      text_37: "கடவுச்சொல் குறைந்தது 8 எழுத்துகளாக இருக்க வேண்டும்",
       text_38: "மின்னஞ்சல் சரியான மின்னஞ்சலாக இருக்க வேண்டும்",
+      text_39: "பெயரில் குறைந்தது 3 எழுத்துகள் இருக்க வேண்டும்",
     },
   },
 };

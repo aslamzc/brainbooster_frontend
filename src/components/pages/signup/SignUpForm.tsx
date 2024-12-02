@@ -25,19 +25,19 @@ const SignUpForm = () => {
 
   const updateValidationMessages = async () => {
     if (errors) {
-      if (errors?.name?.message) {
-        const name = await translateText(errors.name.message, language);
+      if (errors?.name?.message && errors?.name?.type === "server") {
+        const name = await translateText(t(errors.name.message), language);
         setError("name", { type: "server", message: name[0].translatedText });
       }
-      if (errors?.email?.message) {
+      if (errors?.email?.message && errors?.email?.type === "server") {
         const email = await translateText(errors.email.message, language);
         setError("email", { type: "server", message: email[0].translatedText });
       }
-      if (errors?.password?.message) {
+      if (errors?.password?.message && errors?.password?.type === "server") {
         const password = await translateText(errors.password.message, language);
         setError("password", { type: "server", message: password[0].translatedText });
       }
-      if (errors?.password_confirmation?.message) {
+      if (errors?.password_confirmation?.message && errors?.password_confirmation?.type === "server") {
         const password_confirmation = await translateText(errors.password_confirmation.message, language);
         setError("password_confirmation", { type: "server", message: password_confirmation[0].translatedText });
       }
@@ -94,7 +94,7 @@ const SignUpForm = () => {
                     {...register("name")}
                   />
                   {errors.name?.message && (
-                    <p className="pt-2 text-sm text-red-500">{errors.name.message}</p>
+                    <p className="pt-2 text-sm text-red-500">{t(errors.name.message)}</p>
                   )}
                 </div>
                 <div className="flex flex-col gap-4">
@@ -112,7 +112,7 @@ const SignUpForm = () => {
                     {...register("email")}
                   />
                   {errors.email?.message && (
-                    <p className="pt-2 text-sm text-red-500">{errors.email.message}</p>
+                    <p className="pt-2 text-sm text-red-500">{t(errors.email.message)}</p>
                   )}
                 </div>
                 <div className="grid items-center gap-6 sm:grid-cols-2">
@@ -142,7 +142,7 @@ const SignUpForm = () => {
                       </span>
                     </div>
                     {errors.password?.message && (
-                      <p className="pt-2 text-sm text-red-500">{errors.password.message}</p>
+                      <p className="pt-2 text-sm text-red-500">{t(errors.password.message)}</p>
                     )}
                   </div>
                   <div className="flex flex-col gap-4">
@@ -170,7 +170,7 @@ const SignUpForm = () => {
                       </span>
                     </div>
                     {errors.password_confirmation?.message && (
-                      <p className="pt-2 text-sm text-red-500">{errors.password_confirmation.message}</p>
+                      <p className="pt-2 text-sm text-red-500">{t(errors.password_confirmation.message)}</p>
                     )}
                   </div>
                 </div>
