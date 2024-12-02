@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 export default function Toolbar() {
   const logout = () => {
     Cookies.remove('accessToken');
+    localStorage.removeItem('userName');
     window.location.href = "/signin";
   };
   return (

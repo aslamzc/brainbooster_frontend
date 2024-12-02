@@ -13,7 +13,10 @@ import translateText from "@/utils/googleTranslate";
 import { useLanguage } from "@/utils/i18n/LanguageContext";
 
 type ResponseType = {
-  accessToken: string
+  accessToken: string,
+  user : {
+    name: string,
+  }
 }
 const SignInForm = () => {
   const { t } = useTranslation();
@@ -47,6 +50,7 @@ const SignInForm = () => {
         expires: expirationTime,
         path: "/",
       });
+      localStorage.setItem('userName', res.user.name);
       window.location.href = "/dashboard";
     } catch (error: any) {
       const message = await translateText(error.error, language);
