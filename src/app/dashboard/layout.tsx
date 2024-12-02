@@ -7,7 +7,6 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import Image from "next/image";
 import AddIcon from '@mui/icons-material/Add';
 import Toolbar from "./Toolbar";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NAVIGATION: Navigation = [
   {
@@ -30,15 +29,7 @@ const NAVIGATION: Navigation = [
   },
   {
     kind: 'divider',
-  },
-  // {
-  //   segment: 'dashboard/profile',
-  //   title: 'Profile',
-  //   icon: <AccountCircleIcon />,
-  // },
-  // {
-  //   kind: 'divider',
-  // },
+  }
 ];
 
 export default function Layout({ children }: { children: ReactNode; }) {
