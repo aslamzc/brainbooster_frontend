@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import axios from "@/utils/axios";
-import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { form, QuizCreateFormType, Controller, questionObj, correctAnswerOptions, languageOptions, statusOptions } from './QuizEditSchema';
@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import UpdateIcon from '@mui/icons-material/Update';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import { useRouter } from "next/navigation";
 
 type Props = {
     defaultValues: QuizCreateFormType,
@@ -21,12 +22,15 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
 
     const [expanded, setExpanded] = useState<number | null>(0);
     const [loading, setLoading] = useState(false);
+    const [deleteLoading, setDeleteLoading] = useState(false);
     const [quizLoading, setQuizLoading] = useState(false);
     const [btnStatus, setBtnStatus] = useState(true);
     const [paragraphError, setParagraphError] = useState('');
     const [open, setOpen] = useState(false);
+    const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
     const [paragraph, setParagraph] = useState('');
     const notifications = useNotifications();
+    const { push } = useRouter();
     const { handleSubmit, control, getValues, setValue, watch } = form(defaultValues);
 
     watch('questions');
@@ -35,6 +39,10 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
         setOpen(false);
         setBtnStatus(true);
     };
+
+    const confirmDeleteClose = () => {
+        setConfirmDeleteOpen(false);
+    }
 
     const generateQuiz = async () => {
         try {
@@ -66,6 +74,21 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
             notifications.show('Quiz Updated successfully', {
                 severity: 'success', autoHideDuration: 3000
             });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const deleteQuiz = async () => {
+        try {
+            setDeleteLoading(true);
+            await axios.delete(`/quiz/delete/${quizId}`);
+            setDeleteLoading(false);
+            notifications.show('Quiz deleted successfully', {
+                severity: 'success', autoHideDuration: 3000
+            });
+            confirmDeleteClose();
+            push(`/dashboard/quiz`);
         } catch (error) {
             console.error(error);
         }
@@ -323,6 +346,16 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                             Update
                         </LoadingButton>
                     </Grid>
+                    <Grid>
+                        <LoadingButton
+                            variant="contained"
+                            color='error'
+                            endIcon={<DeleteIcon />}
+                            onClick={() => { setConfirmDeleteOpen(true) }}
+                        >
+                            Delete
+                        </LoadingButton>
+                    </Grid>
                 </Grid>
             </form>
             <Dialog
@@ -375,6 +408,33 @@ const QuizEditForm = ({ defaultValues, quizId }: Props) => {
                         </LoadingButton>
                     </Box>
                 </DialogContent>
+            </Dialog>
+            <Dialog
+                open={confirmDeleteOpen}
+                onClose={confirmDeleteClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    Confirm Delete
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to delete this quiz?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={confirmDeleteClose}>Cancel</Button>
+                    <LoadingButton
+                        onClick={deleteQuiz}
+                        loading={deleteLoading}
+                        autoFocus
+                        color='error'
+                        endIcon={<DeleteIcon />}
+                    >
+                        Delete
+                    </LoadingButton>
+                </DialogActions>
             </Dialog>
         </>
     );
