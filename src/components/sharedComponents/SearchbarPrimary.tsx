@@ -6,10 +6,12 @@ const SearchBarPrimary = ({
   placeholder = "Search",
   className = "bg-white border-neutral-40",
   handleSearch,
+  search
 }: {
   placeholder?: string;
   className?: string;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  search: () => void
 }) => {
   const { t } = useTranslation();
   return (
@@ -22,7 +24,7 @@ const SearchBarPrimary = ({
         className="me-3 w-full bg-inherit placeholder:text-neutral-300 focus:outline-none "
         onChange={handleSearch}
       />
-      <ButtonRounded iconName="Search" />
+      <ButtonRounded iconName="Search" search={search} />
     </div>
   );
 };

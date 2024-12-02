@@ -24,13 +24,14 @@ const QuizGridAllCards = () => {
 
   const [quizzes, setQuizzes] = useState<Array<QuizeType>>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     getInitialData();
   }, []);
 
   useEffect(() => {
-    getInitialData();
+    search();
   }, [language]);
 
   const getInitialData = async () => {
@@ -55,12 +56,44 @@ const QuizGridAllCards = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
+    }
+  }
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  }
+
+  const search = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get('/quiz/search/' + searchTerm);
+      if (data.length !== 0) {
+        const userName = data.map((item: any) => item.userName);
+        const title = data.map((item: any) => item.title);
+        const description = data.map((item: any) => item.description);
+
+        const nameTr = await translateText(userName, language);
+        const titleTr = await translateText(title, language);
+        const decriptionTr = await translateText(description, language);
+
+        data.map((item: any, key: number) => {
+          item.userName = nameTr[key].translatedText
+          item.title = titleTr[key].translatedText
+          item.description = decriptionTr[key].translatedText
+        });
+      }
+      setQuizzes(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
     }
   }
 
   return (
     <>
-      <CourseOneBannerWithLabel title={t('text_7')} />
+      <CourseOneBannerWithLabel title={t('text_7')} handleSearch={handleSearch} search={search} />
       <section className="padding-t-60">
         <div className="container">
           {loading && <Loading />}

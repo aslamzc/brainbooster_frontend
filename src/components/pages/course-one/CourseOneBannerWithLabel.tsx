@@ -2,10 +2,12 @@ import SearchBarPrimary from "@/components/sharedComponents/SearchbarPrimary";
 
 type Props = {
   title: string;
+  handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  search: () => void
 };
 
 const CourseOneBannerWithLabel = ({
-  title
+  title, handleSearch, search
 }: Props) => {
   return (
     <section className="section-gap-top padding-b-60 border border-b border-neutral-40">
@@ -14,7 +16,7 @@ const CourseOneBannerWithLabel = ({
           {title}
         </h2>
         <div className="mt-10">
-          <SearchBarPrimary />
+          <SearchBarPrimary handleSearch={handleSearch} search={search} />
         </div>
       </div>
     </section>
